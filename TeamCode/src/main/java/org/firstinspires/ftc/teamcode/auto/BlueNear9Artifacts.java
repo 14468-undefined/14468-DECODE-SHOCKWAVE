@@ -126,7 +126,7 @@ public class BlueNear9Artifacts extends SampleAuto {
 
 
                     .strafeToConstantHeading(new Vector2d(-3, -56))
-                    .strafeToSplineHeading(new Vector2d(-35, -21), Math.toRadians(221), new TranslationalVelConstraint(100))
+                    .strafeToSplineHeading(new Vector2d(-33, -14), Math.toRadians(219), new TranslationalVelConstraint(100))
                     .build());
 
             Actions.runBlocking((t) -> {robot.shooter.spin(); return false; });
@@ -182,7 +182,7 @@ public class BlueNear9Artifacts extends SampleAuto {
                     // ==============return============== \\
                     .strafeToConstantHeading(new Vector2d(21, -32))//back up
 
-                    .strafeToSplineHeading(new Vector2d(-29, -28), Math.toRadians(220))//go to shooting pose
+                    .strafeToSplineHeading(new Vector2d(-32, -26), Math.toRadians(217))//go to shooting pose
 
 
                     .build());
@@ -200,7 +200,7 @@ public class BlueNear9Artifacts extends SampleAuto {
             Actions.runBlocking(robot.drive.actionBuilder(robot.drive.getPose())
                     .strafeToSplineHeading(new Vector2d(-50, -13), Math.toRadians(244), new TranslationalVelConstraint(100))//shooting pose
                             .build());
-            //                      this was changed thursday 11/13 from 240->244 ^
+
 
             break;
         }
