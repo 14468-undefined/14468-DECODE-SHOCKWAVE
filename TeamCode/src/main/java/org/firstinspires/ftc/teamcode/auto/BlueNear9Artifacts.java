@@ -18,7 +18,7 @@ public class BlueNear9Artifacts extends SampleAuto {
     private BaseRobot robot;
 
 
-    private int shooterRPMClose = 1990;//2135 //2100 //2090
+    private int shooterRPMClose = 2135;//2135 //2100 //2090 //1990
 
     TelemetryPacket packet = new TelemetryPacket();
 
@@ -54,7 +54,7 @@ public class BlueNear9Artifacts extends SampleAuto {
                 return false;
             });
             Actions.runBlocking(robot.drive.actionBuilder(robot.drive.getPose())
-                    .strafeToSplineHeading(new Vector2d(-27, -24), Math.toRadians(232))//go to shooting pose
+                    .strafeToSplineHeading(new Vector2d(-29, -28), Math.toRadians(232))//go to shooting pose
                     .build());
 
 
@@ -126,7 +126,7 @@ public class BlueNear9Artifacts extends SampleAuto {
 
 
                     .strafeToConstantHeading(new Vector2d(-3, -56))
-                    .strafeToSplineHeading(new Vector2d(-28, -20), Math.toRadians(221), new TranslationalVelConstraint(100))
+                    .strafeToSplineHeading(new Vector2d(-35, -21), Math.toRadians(221), new TranslationalVelConstraint(100))
                     .build());
 
             Actions.runBlocking((t) -> {robot.shooter.spin(); return false; });
@@ -182,7 +182,7 @@ public class BlueNear9Artifacts extends SampleAuto {
                     // ==============return============== \\
                     .strafeToConstantHeading(new Vector2d(21, -32))//back up
 
-                    .strafeToSplineHeading(new Vector2d(-27, -24), Math.toRadians(220))//go to shooting pose
+                    .strafeToSplineHeading(new Vector2d(-29, -28), Math.toRadians(220))//go to shooting pose
 
 
                     .build());
