@@ -53,7 +53,7 @@ public class A_BlueNear9Artifacts extends SampleAuto {
                 return false;
             });
             Actions.runBlocking(robot.drive.actionBuilder(robot.drive.getPose())
-                    .strafeToSplineHeading(new Vector2d(-29, -28), Math.toRadians(232))//go to shooting pose
+                    .strafeToSplineHeading(new Vector2d(-30, -29), Math.toRadians(230))//go to shooting pose
                     .build());
 
 
@@ -98,35 +98,39 @@ public class A_BlueNear9Artifacts extends SampleAuto {
                         return false;
                     })
 
-                    .afterTime(2.7, (t) -> {
-                        robot.intake.stop();
+                    .afterTime(3.2, (t) -> {
+                        //robot.intake.stop();
+                        robot.intake.setIntakePower(.1);
+                        robot.intake.intake();
                         //robot.transfer.stop();
                         return false;
                     })
 
-                    .afterTime(3.1, (t) -> {
+                    .afterTime(3.4, (t) -> {
                         robot.transfer.spinReverse();
                         //robot.transfer.stop();
                         return false;
                     })
-                    .afterTime(3.2, (t) -> {
+                    .afterTime(3.5, (t) -> {
                         robot.transfer.stop();
+                        robot.intake.stop();
+                        robot.intake.setIntakePower(1);
                         //robot.transfer.stop();
                         return false;
                     })
 
-                    .afterTime(3.3, (t) -> {
+                    .afterTime(3.7, (t) -> {
                         robot.shooter.spin();
                         //robot.transfer.stop();
                         return false;
                     })
 
                     .strafeToSplineHeading(new Vector2d(-3, -20), Math.toRadians(270), new TranslationalVelConstraint(100))
-                    .strafeToConstantHeading(new Vector2d(-3, -58), new TranslationalVelConstraint(30))
+                    .strafeToConstantHeading(new Vector2d(-3, -57), new TranslationalVelConstraint(30))
 
 
-                    .strafeToConstantHeading(new Vector2d(-3, -56))
-                    .strafeToSplineHeading(new Vector2d(-33, -14), Math.toRadians(219), new TranslationalVelConstraint(100))
+                    .strafeToConstantHeading(new Vector2d(-3, -55))
+                    .strafeToSplineHeading(new Vector2d(-30, -15), Math.toRadians(223), new TranslationalVelConstraint(100))
                     .build());
 
             Actions.runBlocking((t) -> {robot.shooter.spin(); return false; });
@@ -151,18 +155,22 @@ public class A_BlueNear9Artifacts extends SampleAuto {
 
                     //stop intaking
                     .afterTime(3.9, (t) -> {
-                        robot.intake.stop();
+                        //robot.intake.stop();
+                        robot.intake.setIntakePower(.1);
+                        robot.intake.intake();
                         robot.transfer.stop();
                         return false;
                     })
 
-                    .afterTime(3.9, (t) -> {
+                    .afterTime(3.9, ( t) -> {
                         robot.transfer.spinReverse();
                         //robot.transfer.stop();
                         return false;
                     })
                     .afterTime(3.99, (t) -> {
                         robot.transfer.stop();
+                        robot.intake.stop();
+                        robot.intake.setIntakePower(1);
                         //robot.transfer.stop();
                         return false;
                     })

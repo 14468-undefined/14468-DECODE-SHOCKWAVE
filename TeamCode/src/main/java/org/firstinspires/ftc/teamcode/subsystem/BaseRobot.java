@@ -29,11 +29,12 @@ public class BaseRobot extends UndefinedSubsystemBase {
 
 
     public BaseRobot(HardwareMap hwMap, Pose2d startPos){
+
         drive = new DriveSubsystem(hwMap, startPos);
         shooter = new ShooterSubsystem(hwMap);
         intake = new IntakeSubsystem(hwMap, cTelemetry);
         autoGenerator = new AutoUtil(drive);
-        //webcamVision = new WebcamVisionSubsystem(hwMap);
+        webcamVision = new WebcamVisionSubsystem(hwMap);
         //huskyLensVision = new HuskyLensSubsystem(hwMap, cTelemetry);
         transfer = new TransferSubsystem(hwMap, cTelemetry);
         LED = new LEDSubsystem(hwMap, cTelemetry);
@@ -69,7 +70,7 @@ public class BaseRobot extends UndefinedSubsystemBase {
         //drive.periodic();
         intake.periodic();
         shooter.periodic();
-        //webcamVision.periodic();
+        webcamVision.periodic();
         //huskyLensVision.periodic();
         transfer.periodic();
         LED.periodic();

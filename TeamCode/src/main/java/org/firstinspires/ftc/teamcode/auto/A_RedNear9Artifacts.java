@@ -80,7 +80,7 @@ public class A_RedNear9Artifacts extends SampleAuto {
                     return false;
                 });
                 Actions.runBlocking(robot.drive.actionBuilder(robot.drive.getPose())
-                        .strafeToSplineHeading(new Vector2d(-27, 24), Math.toRadians(131))//go to shooting pose
+                        .strafeToSplineHeading(new Vector2d(-30, 28), Math.toRadians(131))//go to shooting pose
                         .build());
 
 
@@ -117,7 +117,7 @@ public class A_RedNear9Artifacts extends SampleAuto {
                             return false;
                         })
 
-                        .afterTime(2.1, t -> {//was 3.7
+                        .afterTime(3, t -> {//was 3.7
 
                             robot.intake.stop();
                             return false;
@@ -140,12 +140,12 @@ public class A_RedNear9Artifacts extends SampleAuto {
                         })
 
 
-                        .strafeToSplineHeading(new Vector2d(-17, 25.4), Math.toRadians(90))
-                        .strafeToConstantHeading(new Vector2d(-19, 64.3), new TranslationalVelConstraint(30))
+                        .strafeToSplineHeading(new Vector2d(-20, 25.4), Math.toRadians(90))
+                        .strafeToConstantHeading(new Vector2d(-20, 64.8), new TranslationalVelConstraint(25))
 
 
                         .strafeToConstantHeading(new Vector2d(-24, 57))
-                        .strafeToSplineHeading(new Vector2d(-30, 24), Math.toRadians(145))
+                        .strafeToSplineHeading(new Vector2d(-32, 28), Math.toRadians(145))
                         .build());
 
                 Actions.runBlocking((t) -> {
@@ -173,7 +173,7 @@ public class A_RedNear9Artifacts extends SampleAuto {
                 //wait til shoot 3 is done to move
 
                 Actions.runBlocking((t) -> {
-                   robot.shooter.setTargetRPM(shooterRPMClose-40);
+                   robot.shooter.setTargetRPM(shooterRPMClose);
                    return false;
                 });
 
@@ -211,15 +211,15 @@ public class A_RedNear9Artifacts extends SampleAuto {
 
 
                         //MOTIF 2
-                        .strafeToSplineHeading(new Vector2d(6, 22), Math.toRadians(88))//go to motif
-                        .strafeToConstantHeading(new Vector2d(7, 69))//intake
+                        .strafeToSplineHeading(new Vector2d(3, 22), Math.toRadians(90))//go to motif
+                        .strafeToConstantHeading(new Vector2d(2, 69))//intake
 
                         // ==============return============== \\
-                        .strafeToConstantHeading(new Vector2d(9, 50))//back up
+                        .strafeToConstantHeading(new Vector2d(4, 50))//back up
 
 
                         //.strafeToSplineHeading(new Vector2d(-43, 24), Math.toRadians(139))//shooting pose
-                        .strafeToLinearHeading(new Vector2d(-43, 24), Math.toRadians(132))//shooting pose
+                        .strafeToLinearHeading(new Vector2d(-43, 29), Math.toRadians(132))//shooting pose
 
 
 

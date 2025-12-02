@@ -17,7 +17,7 @@ public class PrepDriveVisionShootCommand extends SequentialCommandGroup {
         SpinUpShooterCommand spinUpShooter = new SpinUpShooterCommand(robot.shooter);
 
         // start vision
-        CommandBase startVision = robot.webcamVision.runOnce(robot.webcamVision::startVision);
+        //CommandBase startVision = robot.webcamVision.runOnce(robot.webcamVision::startVision);
 
         //drive to tag with PID
         CommandBase driveToTagWhenSeen = new CommandBase() {
@@ -58,7 +58,7 @@ public class PrepDriveVisionShootCommand extends SequentialCommandGroup {
 
         addRequirements(robot.webcamVision, robot.drive, robot.shooter);
         addCommands(
-                startVision,
+                //startVision,
                 driveAndSpin
 
                 //shoot
