@@ -12,15 +12,15 @@ import org.firstinspires.ftc.teamcode.subsystem.LEDSubsystem;
 import org.firstinspires.ftc.teamcode.util.Constants;
 import org.firstinspires.ftc.teamcode.util.SampleCommandTeleop;
 
-//@TeleOp(name = "MeetThreeTeleop" , group = "AA - COMP")
-public class MeetTwoTeleop extends SampleCommandTeleop {
+@TeleOp(name = "LEAGUES_TELEOP" , group = "AA - COMP")
+public class LeaguesTeleop extends SampleCommandTeleop {
 
 
     double driveSpeed = 1;
 
     boolean shooterOn = false;
 
-    int shooterRPM = 2035;
+    int shooterRPM = 2135;
 
 
 
@@ -108,8 +108,8 @@ public class MeetTwoTeleop extends SampleCommandTeleop {
             robot.intake.intake();
         });
         g2.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER).whenInactive(() -> {
-                    robot.intake.stop();
-                    robot.transfer.stop();
+            robot.intake.stop();
+            robot.transfer.stop();
         });
 
 

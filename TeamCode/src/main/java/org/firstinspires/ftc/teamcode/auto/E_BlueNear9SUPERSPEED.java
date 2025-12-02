@@ -12,12 +12,12 @@ import org.firstinspires.ftc.teamcode.subsystem.BaseRobot;
 
 import org.firstinspires.ftc.teamcode.util.SampleAuto;
 
-@Autonomous(name="BlueNearForLater")
-public class BlueNearForLater extends SampleAuto {
+@Autonomous(name="SUPER SPEED BLUE NEAR")
+public class E_BlueNear9SUPERSPEED extends SampleAuto {
     private BaseRobot robot;
 
 
-    private int shooterRPMClose = 2135;
+    private int shooterRPMClose = 2135;//2135 //2100 //2090 //1990
 
     TelemetryPacket packet = new TelemetryPacket();
 
@@ -32,26 +32,35 @@ public class BlueNearForLater extends SampleAuto {
         packet.put("target_shooter_rpm", robot.shooter.getTargetRPM());
         packet.put("current_shooter_rpm", robot.shooter.getShooterVelocity());
 
-        robot.LED.startOscillating();
+        robot.transfer.setTransferPower(1);
 
+        robot.LED.startOscillating();
     }
 
     @Override
     public void onStart() {
 
 
+        robot.LED.setPoseTest(.56);
+
+
         while (opModeIsActive()) {
+
+
+
+            robot.shooter.setTargetRPM(shooterRPMClose+85);
             Actions.runBlocking((t) -> {
                 robot.shooter.spin();
                 return false;
             });
             Actions.runBlocking(robot.drive.actionBuilder(robot.drive.getPose())
-                    .strafeToSplineHeading(new Vector2d(-27, -24), Math.toRadians(227))//go to shooting pose
+                    .strafeToSplineHeading(new Vector2d(-29, -28), Math.toRadians(232))//go to shooting pose
                     .build());
 
 
             Actions.runBlocking((t) -> {
                 robot.intake.intake();
+                robot.transfer.spinSlowReverse(.05);
                 return false;
             });
             Actions.runBlocking((t) -> {
@@ -72,6 +81,7 @@ public class BlueNearForLater extends SampleAuto {
                 robot.shooter.eStop();
                 return false;
             });
+            robot.shooter.setTargetRPM(shooterRPMClose);
 
 
             // ====================== Intake 1st Pile ====================== \\
@@ -85,22 +95,23 @@ public class BlueNearForLater extends SampleAuto {
 
                     .afterTime(0, (t) -> {
                         robot.intake.intake();
+                        robot.transfer.spinSlowReverse(.1);
                         //robot.transfer.spinReverse();
                         return false;
                     })
 
-                    .afterTime(3, (t) -> {
+                    .afterTime(2.7, (t) -> {
                         robot.intake.stop();
                         //robot.transfer.stop();
                         return false;
                     })
 
-                    .afterTime(3, (t) -> {
+                    .afterTime(3.1, (t) -> {
                         robot.transfer.spinReverse();
                         //robot.transfer.stop();
                         return false;
                     })
-                    .afterTime(3.09, (t) -> {
+                    .afterTime(3.2, (t) -> {
                         robot.transfer.stop();
                         //robot.transfer.stop();
                         return false;
@@ -113,11 +124,11 @@ public class BlueNearForLater extends SampleAuto {
                     })
 
                     .strafeToSplineHeading(new Vector2d(-3, -20), Math.toRadians(270), new TranslationalVelConstraint(100))
-                    .strafeToConstantHeading(new Vector2d(-3, -59), new TranslationalVelConstraint(30))
+                    .strafeToConstantHeading(new Vector2d(-3, -58), new TranslationalVelConstraint(30))
 
 
-                    .strafeToConstantHeading(new Vector2d(-3, -57))
-                    .strafeToSplineHeading(new Vector2d(-28, -20), Math.toRadians(221), new TranslationalVelConstraint(100))
+                    .strafeToConstantHeading(new Vector2d(-3, -56))
+                    .strafeToSplineHeading(new Vector2d(-33, -14), Math.toRadians(219), new TranslationalVelConstraint(100))
                     .build());
 
             Actions.runBlocking((t) -> {robot.shooter.spin(); return false; });
@@ -167,13 +178,14 @@ public class BlueNearForLater extends SampleAuto {
 
 
                     //MOTIF 2
-                    .strafeToSplineHeading(new Vector2d(22, -15), Math.toRadians(270), new TranslationalVelConstraint(100))//go to motif
-                    .strafeToConstantHeading(new Vector2d(22, -60))//intake
+                    .strafeToSplineHeading(new Vector2d(21, -9), Math.toRadians(270), new TranslationalVelConstraint(100))//go to motif
+                    .strafeToConstantHeading(new Vector2d(21, -65))//intake
 
                     // ==============return============== \\
-                    .strafeToConstantHeading(new Vector2d(22, -32))//back up
-                    .strafeToSplineHeading(new Vector2d(-45, -13), Math.toRadians(244), new TranslationalVelConstraint(100))//shooting pose
-                    //                      this was changed thursday 11/13 from 240->244 ^
+                    .strafeToConstantHeading(new Vector2d(21, -32))//back up
+
+                    .strafeToSplineHeading(new Vector2d(-32, -26), Math.toRadians(217))//go to shooting pose
+
 
                     .build());
 
@@ -186,6 +198,12 @@ public class BlueNearForLater extends SampleAuto {
             AutoUtil.delay(2);
             Actions.runBlocking((t) -> {robot.intake.stop(); return false; });
             Actions.runBlocking((t) -> {robot.shooter.eStop(); return false; });
+
+            Actions.runBlocking(robot.drive.actionBuilder(robot.drive.getPose())
+                    .strafeToSplineHeading(new Vector2d(-50, -13), Math.toRadians(244), new TranslationalVelConstraint(100))//shooting pose
+                    .build());
+
+
             break;
         }
     }

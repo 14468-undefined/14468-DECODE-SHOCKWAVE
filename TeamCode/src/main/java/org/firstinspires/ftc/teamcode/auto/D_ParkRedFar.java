@@ -8,11 +8,10 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.teamcode.subsystem.BaseRobot;
 
-import org.firstinspires.ftc.teamcode.subsystem.LEDSubsystem;
 import org.firstinspires.ftc.teamcode.util.SampleAuto;
 
 @Autonomous(name="ParkRedFar")
-public class ParkRedFar extends SampleAuto {
+public class D_ParkRedFar extends SampleAuto {
     private BaseRobot robot;
 
     private int shooterRPMClose = 2135;

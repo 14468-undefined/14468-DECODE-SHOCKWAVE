@@ -6,13 +6,12 @@ import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.teamcode.auto.util.AutoUtil;
 import org.firstinspires.ftc.teamcode.subsystem.BaseRobot;
 
 import org.firstinspires.ftc.teamcode.util.SampleAuto;
 
 @Autonomous(name="ParkBlueFar")
-public class ParkBlueFar extends SampleAuto {
+public class D_ParkBlueFar extends SampleAuto {
     private BaseRobot robot;
 
     private int shooterRPMClose = 2135;

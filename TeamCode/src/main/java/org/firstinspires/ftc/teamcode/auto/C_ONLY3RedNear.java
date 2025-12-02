@@ -2,20 +2,17 @@ package org.firstinspires.ftc.teamcode.auto;
 
 import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 import com.acmerobotics.roadrunner.Pose2d;
-import com.acmerobotics.roadrunner.TranslationalVelConstraint;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.teamcode.auto.util.AutoUtil;
-import org.firstinspires.ftc.teamcode.command.ShootCommand;
 import org.firstinspires.ftc.teamcode.subsystem.BaseRobot;
 
-import org.firstinspires.ftc.teamcode.subsystem.LEDSubsystem;
 import org.firstinspires.ftc.teamcode.util.SampleAuto;
 
 @Autonomous(name="ONLY3RedNear")
-public class ONLY3RedNear extends SampleAuto {
+public class C_ONLY3RedNear extends SampleAuto {
     private BaseRobot robot;
 
     private int shooterRPMClose = 2135;

@@ -42,7 +42,7 @@ public class TransferSubsystem extends SubsystemBase {
 
 
 
-    public void setIntakePower(double p) {
+    public void setTransferPower(double p) {
         transferPower = p;
     }
 
@@ -65,6 +65,10 @@ public class TransferSubsystem extends SubsystemBase {
     //send balls out through intake
     public void spinReverse() {
         transfer.set(-reverseTransferPower);
+    }
+
+    public void spinSlowReverse(double p){
+        transfer.set(-p);
     }
 
     public void stop() {

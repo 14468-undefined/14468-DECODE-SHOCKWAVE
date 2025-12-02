@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.auto;
+package org.firstinspires.ftc.teamcode.auto.archive;
 
 import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 import com.acmerobotics.roadrunner.Pose2d;
@@ -6,16 +6,18 @@ import com.acmerobotics.roadrunner.TranslationalVelConstraint;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+
 import org.firstinspires.ftc.teamcode.auto.util.AutoUtil;
 import org.firstinspires.ftc.teamcode.subsystem.BaseRobot;
+
 import org.firstinspires.ftc.teamcode.util.SampleAuto;
 
-@Autonomous(name="BLUENEARLASTMATCH")
-public class BlueNearLASTMATCH extends SampleAuto {
+@Autonomous(name="BlueNearForLater")
+public class BlueNearForLater extends SampleAuto {
     private BaseRobot robot;
 
 
-    private int shooterRPMClose = 1985;//2135 //2100 //2090
+    private int shooterRPMClose = 2135;
 
     TelemetryPacket packet = new TelemetryPacket();
 
@@ -30,32 +32,24 @@ public class BlueNearLASTMATCH extends SampleAuto {
         packet.put("target_shooter_rpm", robot.shooter.getTargetRPM());
         packet.put("current_shooter_rpm", robot.shooter.getShooterVelocity());
 
-
         robot.LED.startOscillating();
+
     }
 
     @Override
     public void onStart() {
 
 
-        robot.LED.setPoseTest(.56);
-
-
         while (opModeIsActive()) {
-
-
-
-            robot.shooter.setTargetRPM(shooterRPMClose+85);
             Actions.runBlocking((t) -> {
                 robot.shooter.spin();
                 return false;
             });
             Actions.runBlocking(robot.drive.actionBuilder(robot.drive.getPose())
-                    .strafeToSplineHeading(new Vector2d(-27, -24), Math.toRadians(232))//go to shooting pose
+                    .strafeToSplineHeading(new Vector2d(-27, -24), Math.toRadians(227))//go to shooting pose
                     .build());
 
 
-            AutoUtil.delay(.01);
             Actions.runBlocking((t) -> {
                 robot.intake.intake();
                 return false;
@@ -78,7 +72,6 @@ public class BlueNearLASTMATCH extends SampleAuto {
                 robot.shooter.eStop();
                 return false;
             });
-            robot.shooter.setTargetRPM(shooterRPMClose);
 
 
             // ====================== Intake 1st Pile ====================== \\
@@ -96,18 +89,18 @@ public class BlueNearLASTMATCH extends SampleAuto {
                         return false;
                     })
 
-                    .afterTime(2.7, (t) -> {
+                    .afterTime(3, (t) -> {
                         robot.intake.stop();
                         //robot.transfer.stop();
                         return false;
                     })
 
-                    .afterTime(2.8, (t) -> {
+                    .afterTime(3, (t) -> {
                         robot.transfer.spinReverse();
                         //robot.transfer.stop();
                         return false;
                     })
-                    .afterTime(2.9, (t) -> {
+                    .afterTime(3.09, (t) -> {
                         robot.transfer.stop();
                         //robot.transfer.stop();
                         return false;
@@ -120,14 +113,12 @@ public class BlueNearLASTMATCH extends SampleAuto {
                     })
 
                     .strafeToSplineHeading(new Vector2d(-3, -20), Math.toRadians(270), new TranslationalVelConstraint(100))
-                    .strafeToConstantHeading(new Vector2d(-3, -58), new TranslationalVelConstraint(30))
+                    .strafeToConstantHeading(new Vector2d(-3, -59), new TranslationalVelConstraint(30))
 
 
-                    .strafeToConstantHeading(new Vector2d(-3, -56))
+                    .strafeToConstantHeading(new Vector2d(-3, -57))
                     .strafeToSplineHeading(new Vector2d(-28, -20), Math.toRadians(221), new TranslationalVelConstraint(100))
                     .build());
-
-            Actions.runBlocking((t) -> {robot.shooter.setTargetRPM(shooterRPMClose+20); return false; });
 
             Actions.runBlocking((t) -> {robot.shooter.spin(); return false; });
             //AutoUtil.delay(2);
@@ -137,7 +128,6 @@ public class BlueNearLASTMATCH extends SampleAuto {
             AutoUtil.delay(3);
             Actions.runBlocking((t) -> {robot.stopAll(); return false;});
 
-            Actions.runBlocking((t) -> {robot.shooter.setTargetRPM(shooterRPMClose); return false; });
 
             //---------------------PILE GRAB 2--------------------------------\\
 
@@ -151,18 +141,18 @@ public class BlueNearLASTMATCH extends SampleAuto {
 
 
                     //stop intaking
-                    .afterTime(4, (t) -> {
+                    .afterTime(3.9, (t) -> {
                         robot.intake.stop();
                         robot.transfer.stop();
                         return false;
                     })
 
-                    .afterTime(4, (t) -> {
+                    .afterTime(3.9, (t) -> {
                         robot.transfer.spinReverse();
                         //robot.transfer.stop();
                         return false;
                     })
-                    .afterTime(4.1, (t) -> {
+                    .afterTime(3.99, (t) -> {
                         robot.transfer.stop();
                         //robot.transfer.stop();
                         return false;
@@ -177,14 +167,13 @@ public class BlueNearLASTMATCH extends SampleAuto {
 
 
                     //MOTIF 2
-                    .strafeToSplineHeading(new Vector2d(19.5, -9), Math.toRadians(270), new TranslationalVelConstraint(100))//go to motif
-                    .strafeToConstantHeading(new Vector2d(19.5, -65))//intake
+                    .strafeToSplineHeading(new Vector2d(22, -15), Math.toRadians(270), new TranslationalVelConstraint(100))//go to motif
+                    .strafeToConstantHeading(new Vector2d(22, -60))//intake
 
                     // ==============return============== \\
-                    .strafeToConstantHeading(new Vector2d(19.5, -32))//back up
-
-                    .strafeToSplineHeading(new Vector2d(-27, -24), Math.toRadians(220))//go to shooting pose
-
+                    .strafeToConstantHeading(new Vector2d(22, -32))//back up
+                    .strafeToSplineHeading(new Vector2d(-45, -13), Math.toRadians(244), new TranslationalVelConstraint(100))//shooting pose
+                    //                      this was changed thursday 11/13 from 240->244 ^
 
                     .build());
 
@@ -197,12 +186,6 @@ public class BlueNearLASTMATCH extends SampleAuto {
             AutoUtil.delay(2);
             Actions.runBlocking((t) -> {robot.intake.stop(); return false; });
             Actions.runBlocking((t) -> {robot.shooter.eStop(); return false; });
-
-            Actions.runBlocking(robot.drive.actionBuilder(robot.drive.getPose())
-                    .strafeToSplineHeading(new Vector2d(-50, -13), Math.toRadians(244), new TranslationalVelConstraint(100))//shooting pose
-                            .build());
-            //                      this was changed thursday 11/13 from 240->244 ^
-
             break;
         }
     }
