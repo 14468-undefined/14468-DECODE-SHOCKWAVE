@@ -6,6 +6,7 @@ import com.arcrobotics.ftclib.command.Command;
 import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+i
 
 import org.firstinspires.ftc.teamcode.subsystem.BaseRobot;
 
@@ -19,6 +20,8 @@ public abstract class SampleCommandTeleop extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         g1 = new GamepadEx(gamepad1);
         g2 = new GamepadEx(gamepad2);
+
+
         pen = new ColorfulTelemetry(telemetry, FtcDashboard.getInstance());
         robot = new BaseRobot(hardwareMap, new Pose2d(0,0,0));
         onInit();
