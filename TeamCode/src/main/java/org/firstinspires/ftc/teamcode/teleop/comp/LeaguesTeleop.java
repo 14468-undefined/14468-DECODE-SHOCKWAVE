@@ -182,7 +182,7 @@ public class LeaguesTeleop extends SampleCommandTeleop {
         g2.getGamepadButton(GamepadKeys.Button.A).whenPressed(() -> {
             //zone = 2;
             //numShots = 3;
-            shooterRPM = 2035;
+            shooterRPM = 2135;
             robot.shooter.setTargetRPM(shooterRPM);
 
         });
@@ -192,6 +192,7 @@ public class LeaguesTeleop extends SampleCommandTeleop {
             shooterRPM = 2485;
             robot.shooter.setTargetRPM(shooterRPM);
         });
+        //2685
 
         g2.getGamepadButton(GamepadKeys.Button.DPAD_UP).whenPressed(() -> {
             //zone = 3;

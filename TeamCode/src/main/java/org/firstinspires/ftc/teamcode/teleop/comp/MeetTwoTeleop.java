@@ -12,7 +12,7 @@ import org.firstinspires.ftc.teamcode.subsystem.LEDSubsystem;
 import org.firstinspires.ftc.teamcode.util.Constants;
 import org.firstinspires.ftc.teamcode.util.SampleCommandTeleop;
 
-//@TeleOp(name = "MeetThreeTeleop" , group = "AA - COMP")
+@TeleOp(name = "MeetThreeTeleop" , group = "AA - COMP")
 public class MeetTwoTeleop extends SampleCommandTeleop {
 
 

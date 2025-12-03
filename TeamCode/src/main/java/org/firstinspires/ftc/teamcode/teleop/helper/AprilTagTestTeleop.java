@@ -20,6 +20,14 @@ public class AprilTagTestTeleop extends LinearOpMode {
         // Initialize robot
         robot = new BaseRobot(hardwareMap, new Pose2d(0, 0, 0));
 
+        // --- START CAMERA STREAM ---
+        if (robot.webcamVision != null && robot.webcamVision.webcam != null) {
+            robot.webcamVision.webcam.resumeStreaming();
+            robot.webcamVision.webcam.resumeLiveView();
+
+
+        }
+
         waitForStart();
 
         // Safety check: make sure drive subsystem exists

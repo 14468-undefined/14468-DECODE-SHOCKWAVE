@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.subsystem;
 
+import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.PoseVelocity2d;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.arcrobotics.ftclib.command.CommandBase;
@@ -14,30 +15,32 @@ import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
 import java.util.Comparator;
 import java.util.List;
 
+
+@Config
 public class WebcamVisionSubsystem extends UndefinedSubsystemBase {
 
-    private final VisionPortal webcam;
+    public final VisionPortal webcam;
     private final AprilTagProcessor aprilTagProcessor;
 
     private AprilTagDetection desiredTag;
 
     private static final double DESIRED_DISTANCE = 12.0;
 
-    private static final double P_DIST = 0.04;
-    private static final double I_DIST = 0.001;
-    private static final double D_DIST = 0.01;
+    public static double P_DIST = 0;//..08
+    public static double I_DIST = 0;//.0008
+    public static double D_DIST = 0;//.025
 
-    private static final double P_HEADING = 0.02;
-    private static final double I_HEADING = 0.0005;
-    private static final double D_HEADING = 0.005;
+    public static double P_HEADING = 0.04;//.02
+    public static double I_HEADING = 0.0;//.0005
+    public static double D_HEADING = 0.008;//.005
 
-    private static final double P_STRAFE = 0.03;
-    private static final double I_STRAFE = 0.001;
-    private static final double D_STRAFE = 0.01;
+    public static double P_STRAFE = 0;//.48
+    public static double I_STRAFE = 0.0;//0
+    public static double D_STRAFE = 0;//.12
 
-    private static final double MAX_SPEED = 0.5;
-    private static final double MAX_TURN = 0.3;
-    private static final double MAX_STRAFE = 0.5;
+    public static double MAX_SPEED = 0.8;//.5
+    public static double MAX_TURN = 0.5;//.3
+    public static double MAX_STRAFE = 0.8;//.5
 
     private double distIntegral = 0, lastDistError = 0;
     private double headingIntegral = 0, lastHeadingError = 0;
@@ -50,7 +53,9 @@ public class WebcamVisionSubsystem extends UndefinedSubsystemBase {
         webcam = new VisionPortal.Builder()
                 .setCamera(hwMap.get(WebcamName.class, "Webcam 1"))
                 .addProcessor(aprilTagProcessor)
+
                 .build();
+
     }
 
     public boolean hasTarget() {
