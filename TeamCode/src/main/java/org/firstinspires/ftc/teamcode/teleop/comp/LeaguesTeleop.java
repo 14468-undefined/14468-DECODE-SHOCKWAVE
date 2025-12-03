@@ -6,6 +6,7 @@ import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.RunCommand;
 import com.arcrobotics.ftclib.command.button.Trigger;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
+import com.arcrobotics.ftclib.gamepad.TriggerReader;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.subsystem.LEDSubsystem;
@@ -125,6 +126,31 @@ public class LeaguesTeleop extends SampleCommandTeleop {
 
         //right trigger = intake forwards, left trigger = intake reverse
         //g1.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER) > 0.05).whenActive(new InstantCommand(() -> robot.intake.intake())).whenInactive(new InstantCommand(() -> robot.intake.stop()));
+
+
+
+
+
+        TriggerReader leftTriggerReader = new TriggerReader(
+                g2, GamepadKeys.Trigger.LEFT_TRIGGER
+        );
+        if (leftTriggerReader.isDown()){
+            robot.transfer.spinReverse();
+        }
+        if(leftTriggerReader.wasJustReleased()){
+            robot.transfer.stop();
+        }
+
+        TriggerReader rightTriggerReader = new TriggerReader(
+                g2, GamepadKeys.Trigger.RIGHT_TRIGGER
+        );
+        if (rightTriggerReader.isDown()){
+            robot.intake.intake();
+        }
+        if(rightTriggerReader.wasJustReleased()){
+            robot.intake.stop();
+        }
+
 
 
         new Trigger(() -> gamepad1.right_trigger > .1).whenActive(new InstantCommand(() -> robot.intake.intake())).whenInactive(new InstantCommand(() -> robot.intake.stop()));
