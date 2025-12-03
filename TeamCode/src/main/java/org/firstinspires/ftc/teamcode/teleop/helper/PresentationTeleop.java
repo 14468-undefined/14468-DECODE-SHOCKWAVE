@@ -10,11 +10,13 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.subsystem.LEDSubsystem;
+import org.firstinspires.ftc.teamcode.util.ColorfulTelemetry;
 import org.firstinspires.ftc.teamcode.util.Constants;
 import org.firstinspires.ftc.teamcode.util.SampleCommandTeleop;
 
 @TeleOp(name = "PresentationTeleop" , group = "helper")
 public class PresentationTeleop extends SampleCommandTeleop {
+
 
 
 
@@ -26,6 +28,7 @@ public class PresentationTeleop extends SampleCommandTeleop {
 
     ElapsedTime time = new ElapsedTime();
 
+    ElapsedTime scriptTimer = new ElapsedTime();
     double startPos = 0.0;
     double endPos   = 1.0;
     double duration = 10;     // seconds for each sweep
@@ -48,6 +51,7 @@ public class PresentationTeleop extends SampleCommandTeleop {
 
         robot.intake.setIntakePower(.4);//low
 
+        robot.LED.startOscillating();
     }
 
     @Override
@@ -178,23 +182,31 @@ public class PresentationTeleop extends SampleCommandTeleop {
 
     @Override
     public void onLoop() {
-        double t = time.seconds();
-        double sweepTime = duration; // time for 0->1
-        double cycleTime = sweepTime * 2;
-        double cyclePos = (t % cycleTime) / sweepTime; // 0→2
+//        double t = time.seconds();
+//        double sweepTime = duration; // time for 0->1
+//        double cycleTime = sweepTime * 2;
+//        double cyclePos = (t % cycleTime) / sweepTime; // 0→2
+//
+//        double servoPos;
+//        if (cyclePos <= 1.0) {
+//            servoPos = cyclePos;  // 0 -> 1
+//        } else {
+//            servoPos = 2 - cyclePos; // 1 -> 0
+//        }
+//
+//        robot.LED.setPoseTest(servoPos);
 
-        double servoPos;
-        if (cyclePos <= 1.0) {
-            servoPos = cyclePos;  // 0 -> 1
-        } else {
-            servoPos = 2 - cyclePos; // 1 -> 0
+
+
+
+        double timePassed = scriptTimer.seconds();
+        pen.addData("Time: ", timePassed);
+        if(timePassed < 240) {//4 min
+            pen.setColor(ColorfulTelemetry.Green);
         }
-
-        robot.LED.setPoseTest(servoPos);
-
-        // Telemetry
-        pen.addData("Servo Pos", servoPos);
-        pen.addData("Shooter RPM", robot.shooter.getShooterVelocity());
+        else{
+            pen.setColor(ColorfulTelemetry.Red);
+        }
     }
 
 
@@ -203,5 +215,6 @@ public class PresentationTeleop extends SampleCommandTeleop {
     @Override
     public void onStop() {
         robot.stopAll();
+        robot.LED.stopOscillating();
     }
 }

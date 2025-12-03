@@ -186,10 +186,18 @@ public class LeaguesTeleop extends SampleCommandTeleop {
             robot.shooter.setTargetRPM(shooterRPM);
 
         });
+        g2.getGamepadButton(GamepadKeys.Button.B).whenPressed(() -> {
+            //zone = 2;
+            //numShots = 3;
+            shooterRPM = 2685;
+            robot.shooter.setTargetRPM(shooterRPM);
+
+        });
+
         g2.getGamepadButton(GamepadKeys.Button.Y).whenPressed(() -> {
             //zone = 3;
             //numShots = 3;
-            shooterRPM = 2485;
+            shooterRPM = 2685;//2935
             robot.shooter.setTargetRPM(shooterRPM);
         });
         //2685
@@ -252,6 +260,9 @@ public class LeaguesTeleop extends SampleCommandTeleop {
 
          */
 
+        //far far - 2985
+        //far close - 2685
+        //close - 2135
         if (robot.shooter.isAtTargetSpeed()) {
             // Solid green when at speed
             robot.LED.setColor(LEDSubsystem.LEDColor.GREEN);
