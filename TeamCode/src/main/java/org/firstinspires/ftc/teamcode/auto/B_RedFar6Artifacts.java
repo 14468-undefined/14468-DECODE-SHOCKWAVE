@@ -11,13 +11,13 @@ import org.firstinspires.ftc.teamcode.subsystem.BaseRobot;
 
 import org.firstinspires.ftc.teamcode.util.SampleAuto;
 
-@Autonomous(name="RedFarMeet3")
+@Autonomous(name="B_RedFar9Artifacts")
 public class B_RedFar6Artifacts extends SampleAuto {
     private BaseRobot robot;
     private ShootCommand shoot3;
 
 
-    int shooterRPM = 2485;
+    int shooterRPM = 2500;
     @Override
     public void onInit() {
         robot = new BaseRobot(hardwareMap, new Pose2d(61, 18, Math.toRadians(180)));
@@ -40,7 +40,7 @@ public class B_RedFar6Artifacts extends SampleAuto {
 
 
             Actions.runBlocking(robot.drive.actionBuilder(robot.drive.getPose())
-                    .strafeToLinearHeading(new Vector2d(56, 10), Math.toRadians(151))//go to shoot pose
+                    .strafeToLinearHeading(new Vector2d(56, 10), Math.toRadians(147))//go to shoot pose
                     .build());
 
             AutoUtil.delay(2);
@@ -50,19 +50,19 @@ public class B_RedFar6Artifacts extends SampleAuto {
                 robot.intake.intake();
                 return false;
             });
-            AutoUtil.delay(.5);
+            AutoUtil.delay(.7);
             Actions.runBlocking((t) -> {
                 robot.intake.stop();
                 robot.transfer.stop();
                 return false;
             });
-            AutoUtil.delay(1);
+            AutoUtil.delay(.7);
             Actions.runBlocking((t) -> {
                 robot.transfer.spin();
                 robot.intake.intake();
                 return false;
             });
-            AutoUtil.delay(.5);
+            AutoUtil.delay(1);
             Actions.runBlocking((t) -> {
                 robot.intake.stop();
                 robot.transfer.stop();
@@ -113,7 +113,7 @@ public class B_RedFar6Artifacts extends SampleAuto {
                     })
 
                     .strafeToSplineHeading(new Vector2d(24, 29), Math.toRadians(90))//go to motif 1
-                    .strafeToConstantHeading(new Vector2d(24, 66))//intake
+                    .strafeToConstantHeading(new Vector2d(23, 66))//intake
 
 
                     .strafeToLinearHeading(new Vector2d(56, 10), Math.toRadians(158.5))//go to shoot pose
@@ -191,7 +191,7 @@ public class B_RedFar6Artifacts extends SampleAuto {
                     .strafeToSplineHeading(new Vector2d(42, 81), Math.toRadians(0))//line up for HP zone balls
                     .strafeToSplineHeading(new Vector2d(61, 81), Math.toRadians(0))//line up for HP zone balls
                     //.strafeToConstantHeading(new Vector2d(61, 65))//line up for HP zone balls
-                    .strafeToLinearHeading(new Vector2d(56, 10), Math.toRadians(152.5))//go to shoot pose
+                    .strafeToLinearHeading(new Vector2d(56, 10), Math.toRadians(162))//go to shoot pose
 
                     .build());
 

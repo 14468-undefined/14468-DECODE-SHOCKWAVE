@@ -11,7 +11,7 @@ import org.firstinspires.ftc.teamcode.subsystem.BaseRobot;
 
 import org.firstinspires.ftc.teamcode.util.SampleAuto;
 
-@Autonomous(name="BlueFarMeet3")
+@Autonomous(name="B_BlueFar9Artifacts")
 public class B_BlueFar6Artifacts extends SampleAuto {
     private BaseRobot robot;
     private ShootCommand shoot3;
