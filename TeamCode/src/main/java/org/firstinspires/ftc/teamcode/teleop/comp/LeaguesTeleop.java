@@ -153,8 +153,8 @@ public class LeaguesTeleop extends SampleCommandTeleop {
 
 
 
-        new Trigger(() -> gamepad1.right_trigger > .1).whenActive(new InstantCommand(() -> robot.intake.intake())).whenInactive(new InstantCommand(() -> robot.intake.stop()));
-        new Trigger(() -> gamepad1.left_trigger > .1).whenActive(new InstantCommand(() -> robot.intake.intakeReverse())).whenInactive(new InstantCommand(() -> robot.intake.stop()));
+        new Trigger(() -> gamepad2.right_trigger > .1).whenActive(new InstantCommand(() -> robot.intake.intake())).whenInactive(new InstantCommand(() -> robot.intake.stop()));
+        new Trigger(() -> gamepad2.left_trigger > .1).whenActive(new InstantCommand(() -> robot.transfer.spinReverse())).whenInactive(new InstantCommand(() -> robot.transfer.stop()));
 
         //new Trigger(() -> g1.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER) > 0.05).whenActive(new InstantCommand(() -> robot.intake.intakeReverse())).whenInactive(new InstantCommand(() -> robot.intake.stop()));
 
