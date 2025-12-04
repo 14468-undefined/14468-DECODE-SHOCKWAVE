@@ -55,13 +55,14 @@ public class LeaguesTeleop extends SampleCommandTeleop {
         g1.getGamepadButton(GamepadKeys.Button.DPAD_UP).whenPressed(() -> {
             driveSpeed = 1;
         });
-        g1.getGamepadButton(GamepadKeys.Button.DPAD_LEFT).whenPressed(() -> {
-            driveSpeed = .5;
-        });
+        //g1.getGamepadButton(GamepadKeys.Button.DPAD_LEFT).whenPressed(() -> {
+          //  driveSpeed = .5;
+        //});
         g1.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whenPressed(() -> {
             driveSpeed = .2;
         });
 
+        gamepad1.rumble(1000);
 
 
 
@@ -223,7 +224,7 @@ public class LeaguesTeleop extends SampleCommandTeleop {
         g2.getGamepadButton(GamepadKeys.Button.DPAD_UP).whenPressed(() -> {//was Y
             //zone = 3;
             //numShots = 3;
-            shooterRPM = 2685;//2935
+            shooterRPM = 2635;//2685
             robot.shooter.setTargetRPM(shooterRPM);
         });
         //2685

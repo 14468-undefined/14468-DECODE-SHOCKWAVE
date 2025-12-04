@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.auto;
 
 import com.acmerobotics.roadrunner.Pose2d;
+import com.acmerobotics.roadrunner.TranslationalVelConstraint;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -33,7 +34,7 @@ public class B_RedFar6Artifacts extends SampleAuto {
 
 
 
-            Actions.runBlocking((t) -> {
+        Actions.runBlocking((t) -> {
                 robot.shooter.spin();
                 return false;
             });
@@ -68,6 +69,7 @@ public class B_RedFar6Artifacts extends SampleAuto {
                 robot.transfer.stop();
                 return false;
             });
+
             AutoUtil.delay(1);
 
             Actions.runBlocking((t) -> {
@@ -76,12 +78,15 @@ public class B_RedFar6Artifacts extends SampleAuto {
                 return false;
             });
 
-            AutoUtil.delay(1);
+            AutoUtil.delay(.5);
 
             Actions.runBlocking((t) -> {
                 robot.stopAll();
                 return false;
             });
+
+
+
             // ====================== Intake 1st Pile ====================== \\
 
 
@@ -107,7 +112,7 @@ public class B_RedFar6Artifacts extends SampleAuto {
                         robot.transfer.stop();
                         return false;
                     })
-                    .afterTime(5, (t) -> {
+                    .afterTime(3, (t) -> {
                         robot.shooter.spin();
                         return false;
                     })
@@ -121,7 +126,7 @@ public class B_RedFar6Artifacts extends SampleAuto {
                     .build());
 
 
-            AutoUtil.delay(2);
+            //AutoUtil.delay(2);
 
             Actions.runBlocking((t) -> {
                 robot.transfer.spin();
@@ -188,43 +193,67 @@ public class B_RedFar6Artifacts extends SampleAuto {
                         return false;
                     })
                     //get HP zone balls
-                    .strafeToSplineHeading(new Vector2d(42, 81), Math.toRadians(0))//line up for HP zone balls
+                    /*.strafeToSplineHeading(new Vector2d(42, 81), Math.toRadians(0))//line up for HP zone balls
                     .strafeToSplineHeading(new Vector2d(61, 81), Math.toRadians(0))//line up for HP zone balls
                     //.strafeToConstantHeading(new Vector2d(61, 65))//line up for HP zone balls
                     .strafeToLinearHeading(new Vector2d(56, 10), Math.toRadians(162))//go to shoot pose
+                     */
+
+
+                    .strafeToSplineHeading(new Vector2d(45, 70), Math.toRadians(70))//line up for HP zone balls
+                    .strafeToSplineHeading(new Vector2d(60, 75), Math.toRadians(45),  new TranslationalVelConstraint(25))//line up for HP zone balls
+                    .strafeToSplineHeading(new Vector2d(67, 75), Math.toRadians(45), new TranslationalVelConstraint(25))//line up for HP zone balls
+                    .strafeToSplineHeading(new Vector2d(60, 75), Math.toRadians(45))
+                    .strafeToLinearHeading(new Vector2d(56, 10), Math.toRadians(158.5))//go to shoot pose
+
+                    //.strafeToSplineHeading(new Vector2d(61, 81), Math.toRadians(0))//line up for HP zone balls
+
+
 
                     .build());
 
 
-            Actions.runBlocking(robot.drive.actionBuilder(robot.drive.getPose())
+        //AutoUtil.delay(2);
 
-                    .afterTime(0, (t) -> {
-                        robot.intake.intake();
-                        return false;
-                    })
+        Actions.runBlocking((t) -> {
+            robot.transfer.spin();
+            robot.intake.intake();
+            return false;
+        });
+        AutoUtil.delay(.45);
+        Actions.runBlocking((t) -> {
+            robot.intake.stop();
+            robot.transfer.stop();
+            return false;
+        });
+        AutoUtil.delay(1);
+        Actions.runBlocking((t) -> {
+            robot.transfer.spin();
+            robot.intake.intake();
+            return false;
+        });
+        AutoUtil.delay(.6);
+        Actions.runBlocking((t) -> {
+            robot.intake.stop();
+            robot.transfer.stop();
+            return false;
+        });
+        AutoUtil.delay(1);
 
-                    .afterTime(6, (t) -> {
-                        robot.intake.stop();
-                        return false;
-                    })
+        Actions.runBlocking((t) -> {
+            robot.transfer.spin();
+            robot.intake.intake();
+            return false;
+        });
 
-                    .afterTime(6.1, (t) -> {
-                        robot.transfer.spinReverse();
-                        return false;
-                    })
-                    .afterTime(6.2, (t) -> {
-                        robot.transfer.stop();
-                        return false;
-                    })
-                    .afterTime(7, (t) -> {
-                        robot.shooter.spin();
-                        return false;
-                    })
-                    //.strafeToLinearHeading(new Vector2d(40, 67), Math.toRadians(0))
+        AutoUtil.delay(.6);
 
-                    //.strafeToConstantHeading(new Vector2d(74, 67))
+        Actions.runBlocking((t) -> {
+            robot.stopAll();
+            return false;
+        });
 
-                    .build());
+
 
 
     }
