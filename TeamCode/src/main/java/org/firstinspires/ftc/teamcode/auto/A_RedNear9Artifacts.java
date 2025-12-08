@@ -135,7 +135,7 @@ public class A_RedNear9Artifacts extends SampleAuto {
                         })
 
                         .afterTime(3.4, (t) -> {
-                            robot.shooter.setTargetRPM(shooterRPMClose+20);
+                            robot.shooter.setTargetRPM(shooterRPMClose+25);
                             robot.shooter.spin();
                             return false;
                         })
@@ -186,25 +186,25 @@ public class A_RedNear9Artifacts extends SampleAuto {
                             return false; // becomes false after first trigger
                         })
 
-                        .afterTime(3.9, t -> {
+                        .afterTime(4, t -> {
 
                             robot.intake.stop();
                             return false;
                         })
 
 
-                        .afterTime(4, (t) -> {
+                        .afterTime(4.1, (t) -> {
                             robot.transfer.spinReverse();
                             //robot.transfer.stop();
                             return false;
                         })
-                        .afterTime(4.09, (t) -> {
+                        .afterTime(4.2, (t) -> {
                             robot.transfer.stop();
                             //robot.transfer.stop();
                             return false;
                         })
 
-                        .afterTime(4.2, (t) -> {
+                        .afterTime(4.4, (t) -> {
                             robot.shooter.spin();
                             //robot.transfer.stop();
                             return false;

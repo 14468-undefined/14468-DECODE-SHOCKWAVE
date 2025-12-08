@@ -62,7 +62,6 @@ public class LeaguesTeleop extends SampleCommandTeleop {
             driveSpeed = .2;
         });
 
-        gamepad1.rumble(1000);
 
 
 
@@ -202,10 +201,34 @@ public class LeaguesTeleop extends SampleCommandTeleop {
 
 
 
+        //2235
+
+
+        g1.getGamepadButton(GamepadKeys.Button.A).whenPressed(() -> {//was a
+            //zone = 2;
+            //numShots = 3;
+            shooterRPM = 2135;
+            robot.shooter.setTargetRPM(shooterRPM);
+
+        });
+        g1.getGamepadButton(GamepadKeys.Button.X).whenPressed(() -> {//was a
+            //zone = 2;
+            //numShots = 3;
+            shooterRPM = 2235;
+            robot.shooter.setTargetRPM(shooterRPM);
+
+        });
+        g1.getGamepadButton(GamepadKeys.Button.Y).whenPressed(() -> {//was a
+            //zone = 2;
+            //numShots = 3;
+            shooterRPM = 2635;
+            robot.shooter.setTargetRPM(shooterRPM);
+
+        });
 
 
 
-
+        /*
         g2.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whenPressed(() -> {//was a
             //zone = 2;
             //numShots = 3;
@@ -227,15 +250,17 @@ public class LeaguesTeleop extends SampleCommandTeleop {
             shooterRPM = 2635;//2685
             robot.shooter.setTargetRPM(shooterRPM);
         });
+
+         */
         //2685
 
-        g2.getGamepadButton(GamepadKeys.Button.DPAD_RIGHT).whenPressed(() -> {
+        g1.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).whenPressed(() -> {
             //zone = 3;
             //numShots = 3;
             shooterRPM += 50;
             robot.shooter.setTargetRPM(shooterRPM);
         });
-        g2.getGamepadButton(GamepadKeys.Button.DPAD_LEFT).whenPressed(() -> {
+        g1.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER).whenPressed(() -> {
             //zone = 3;
             //numShots = 3;
             shooterRPM -= 50;

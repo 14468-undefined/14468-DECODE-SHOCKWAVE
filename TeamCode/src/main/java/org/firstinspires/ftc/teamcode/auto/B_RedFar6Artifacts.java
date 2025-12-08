@@ -51,7 +51,7 @@ public class B_RedFar6Artifacts extends SampleAuto {
                 robot.intake.intake();
                 return false;
             });
-            AutoUtil.delay(.7);
+            AutoUtil.delay(.4);
             Actions.runBlocking((t) -> {
                 robot.intake.stop();
                 robot.transfer.stop();
@@ -183,7 +183,7 @@ public class B_RedFar6Artifacts extends SampleAuto {
                         robot.transfer.spinReverse();
                         return false;
                     })
-                    .afterTime(4.61, (t) -> {
+                    .afterTime(4.6, (t) -> {
                         robot.transfer.stop();
                         return false;
                     })
