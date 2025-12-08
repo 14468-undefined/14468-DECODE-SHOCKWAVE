@@ -128,13 +128,14 @@ public class A_RedNear9Artifacts extends SampleAuto {
                             //robot.transfer.stop();
                             return false;
                         })
-                        .afterTime(3.2, (t) -> {
+                        .afterTime(3.3, (t) -> {
                             robot.transfer.stop();
                             //robot.transfer.stop();
                             return false;
                         })
 
                         .afterTime(3.4, (t) -> {
+                            robot.shooter.setTargetRPM(shooterRPMClose+20);
                             robot.shooter.spin();
                             return false;
                         })
@@ -219,7 +220,7 @@ public class A_RedNear9Artifacts extends SampleAuto {
 
 
                         //.strafeToSplineHeading(new Vector2d(-43, 24), Math.toRadians(139))//shooting pose
-                        .strafeToLinearHeading(new Vector2d(-43, 29), Math.toRadians(136))//shooting pose
+                        .strafeToLinearHeading(new Vector2d(-41, 24), Math.toRadians(138.5))//shooting pose
 
 
 
@@ -253,6 +254,11 @@ public class A_RedNear9Artifacts extends SampleAuto {
                     robot.shooter.eStop();
                     return false;
                 });
+
+                Actions.runBlocking(robot.drive.actionBuilder(robot.drive.getPose())
+                        .strafeToConstantHeading(new Vector2d(-50, 27))//shooting pose
+                        .build()
+                );
                 break;
 
         }
