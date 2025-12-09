@@ -12,8 +12,8 @@ import org.firstinspires.ftc.teamcode.subsystem.BaseRobot;
 
 import org.firstinspires.ftc.teamcode.util.SampleAuto;
 
-@Autonomous(name="A_BlueNear9Artifacts")
-public class A_BlueNear9Artifacts extends SampleAuto {
+@Autonomous(name="A_BlueNearGATEDUMP")
+public class A_BLUEGATEDUMP extends SampleAuto {
     private BaseRobot robot;
 
 
@@ -100,55 +100,8 @@ public class A_BlueNear9Artifacts extends SampleAuto {
                 return false;
             });
 
-            if(!gateDump) {
-                Actions.runBlocking(robot.drive.actionBuilder(robot.drive.getPose())
-
-                        .afterTime(0, (t) -> {
-                            robot.intake.intake();
-                            robot.transfer.spinSlowReverse(.1);
-                            //robot.transfer.spinReverse();
-                            return false;
-                        })
-
-                        .afterTime(3.2, (t) -> {
-                            //robot.intake.stop();
-                            robot.intake.setIntakePower(.1);
-                            robot.intake.intake();
-                            //robot.transfer.stop();
-                            return false;
-                        })
-
-                        .afterTime(3.4, (t) -> {
-                            robot.transfer.spinReverse();
-                            //robot.transfer.stop();
-                            return false;
-                        })
-                        .afterTime(3.5, (t) -> {
-                            robot.transfer.stop();
-                            robot.intake.stop();
-                            robot.intake.setIntakePower(1);
-                            //robot.transfer.stop();
-                            return false;
-                        })
-
-                        .afterTime(3.7, (t) -> {
-                            robot.shooter.spin();
-                            //robot.transfer.stop();
-                            return false;
-                        })
-
-                        .strafeToSplineHeading(new Vector2d(-3, -20), Math.toRadians(270), new TranslationalVelConstraint(100))
-                        .strafeToConstantHeading(new Vector2d(-3, -57), new TranslationalVelConstraint(30))
 
 
-                        .strafeToConstantHeading(new Vector2d(-3, -55))
-
-
-
-                        .strafeToSplineHeading(new Vector2d(-30, -15), Math.toRadians(223), new TranslationalVelConstraint(100))
-                        .build());
-            }
-            else {
                 Actions.runBlocking(robot.drive.actionBuilder(robot.drive.getPose())
 
                         .afterTime(0, (t) -> {
@@ -192,14 +145,14 @@ public class A_BlueNear9Artifacts extends SampleAuto {
                         .strafeToConstantHeading(new Vector2d(-3, -55))
 
                         //NEW
-                        .strafeToConstantHeading(new Vector2d(-12, -50), new TranslationalVelConstraint(30))
-                        .strafeToConstantHeading(new Vector2d(-12, -55), new TranslationalVelConstraint(30))
+                        .strafeToConstantHeading(new Vector2d(7, -40), new TranslationalVelConstraint(30))
+                        .strafeToConstantHeading(new Vector2d(7, -55), new TranslationalVelConstraint(30))
                         //END NEW
 
 
                         .strafeToSplineHeading(new Vector2d(-30, -15), Math.toRadians(223), new TranslationalVelConstraint(100))
                         .build());
-            }
+
 
 
             Actions.runBlocking((t) -> {robot.shooter.spin(); return false; });
@@ -276,7 +229,7 @@ public class A_BlueNear9Artifacts extends SampleAuto {
 
             Actions.runBlocking(robot.drive.actionBuilder(robot.drive.getPose())
                     .strafeToSplineHeading(new Vector2d(-50, -13), Math.toRadians(244), new TranslationalVelConstraint(100))//shooting pose
-                            .build());
+                    .build());
 
 
             break;
