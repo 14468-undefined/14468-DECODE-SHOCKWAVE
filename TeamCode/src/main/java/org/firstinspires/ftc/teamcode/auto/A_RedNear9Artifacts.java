@@ -75,6 +75,7 @@ public class A_RedNear9Artifacts extends SampleAuto {
              */
 
 
+
                 Actions.runBlocking((t) -> {
                     robot.shooter.spin();
                     return false;
