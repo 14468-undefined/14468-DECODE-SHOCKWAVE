@@ -118,18 +118,18 @@ public class A_REDNEARGATEDUMP extends SampleAuto {
                         return false;
                     })
 
-                    .afterTime(3, t -> {//was 3.7
+                    .afterTime(2.4, t -> {//was 3.7
 
                         robot.intake.stop();
                         return false;
                     })
 
-                    .afterTime(3.1, (t) -> {
+                    .afterTime(2.5, (t) -> {
                         robot.transfer.spinReverse();
                         //robot.transfer.stop();
                         return false;
                     })
-                    .afterTime(3.3, (t) -> {
+                    .afterTime(2.7, (t) -> {
                         robot.transfer.stop();
                         //robot.transfer.stop();
                         return false;
@@ -217,7 +217,7 @@ public class A_REDNEARGATEDUMP extends SampleAuto {
 
                     //MOTIF 2
                     .strafeToSplineHeading(new Vector2d(4.5, 22), Math.toRadians(90))//go to motif
-                    .strafeToConstantHeading(new Vector2d(5, 69))//intake
+                    .strafeToConstantHeading(new Vector2d(5, 69),  new TranslationalVelConstraint(20))//intake
 
                     // ==============return============== \\
                     .strafeToConstantHeading(new Vector2d(6, 50))//back up
@@ -232,7 +232,9 @@ public class A_REDNEARGATEDUMP extends SampleAuto {
 
 
             Actions.runBlocking((t) -> {
+                robot.shooter.setTargetRPM(shooterRPMClose-10);
                 robot.shooter.spin();
+
                 return false;
             });
             //AutoUtil.delay(2);
