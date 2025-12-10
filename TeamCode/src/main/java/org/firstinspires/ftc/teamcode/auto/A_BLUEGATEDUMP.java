@@ -17,7 +17,7 @@ public class A_BLUEGATEDUMP extends SampleAuto {
     private BaseRobot robot;
 
 
-    private int shooterRPMClose = 2135;//2135 //2100 //2090 //1990
+    private int shooterRPMClose = 2200;//2135 //2100 //2090 //1990
 
     TelemetryPacket packet = new TelemetryPacket();
 
@@ -57,13 +57,13 @@ public class A_BLUEGATEDUMP extends SampleAuto {
             robot.LED.setPoseTest(.56);
 
 
-            robot.shooter.setTargetRPM(shooterRPMClose+85);
+            //robot.shooter.setTargetRPM(shooterRPMClose+85);
             Actions.runBlocking((t) -> {
                 robot.shooter.spin();
                 return false;
             });
             Actions.runBlocking(robot.drive.actionBuilder(robot.drive.getPose())
-                    .strafeToSplineHeading(new Vector2d(-30, -29), Math.toRadians(230))//go to shooting pose
+                    .strafeToSplineHeading(new Vector2d(-30, -27), Math.toRadians(228))//go to shooting pose
                     .build());
 
 
@@ -139,7 +139,7 @@ public class A_BLUEGATEDUMP extends SampleAuto {
                         })
 
                         .strafeToSplineHeading(new Vector2d(-3, -20), Math.toRadians(270), new TranslationalVelConstraint(100))
-                        .strafeToConstantHeading(new Vector2d(-3, -57), new TranslationalVelConstraint(30))
+                        .strafeToConstantHeading(new Vector2d(-3, -57), new TranslationalVelConstraint(25))
 
 
                         .strafeToConstantHeading(new Vector2d(-3, -55))
@@ -150,7 +150,7 @@ public class A_BLUEGATEDUMP extends SampleAuto {
                         //END NEW
 
 
-                        .strafeToSplineHeading(new Vector2d(-30, -15), Math.toRadians(223), new TranslationalVelConstraint(100))
+                        .strafeToSplineHeading(new Vector2d(-20, -8), Math.toRadians(229), new TranslationalVelConstraint(100))
                         .build());
 
 
@@ -212,12 +212,12 @@ public class A_BLUEGATEDUMP extends SampleAuto {
                     // ==============return============== \\
                     .strafeToConstantHeading(new Vector2d(21, -32))//back up
 
-                    .strafeToSplineHeading(new Vector2d(-32, -26), Math.toRadians(217))//go to shooting pose
+                    .strafeToSplineHeading(new Vector2d(-35, -16), Math.toRadians(233))//go to shooting pose
 
 
                     .build());
 
-            Actions.runBlocking((t) -> {robot.shooter.spin(); return false; });
+            Actions.runBlocking((t) -> { robot.shooter.setTargetRPM(shooterRPMClose-30);robot.shooter.spin(); return false; });
             //AutoUtil.delay(2);
             Actions.runBlocking((t) -> {robot.intake.intake(); return false; });
             Actions.runBlocking((t) -> {robot.transfer.spin(); return false; });
@@ -227,9 +227,11 @@ public class A_BLUEGATEDUMP extends SampleAuto {
             Actions.runBlocking((t) -> {robot.intake.stop(); return false; });
             Actions.runBlocking((t) -> {robot.shooter.eStop(); return false; });
 
-            Actions.runBlocking(robot.drive.actionBuilder(robot.drive.getPose())
-                    .strafeToSplineHeading(new Vector2d(-50, -13), Math.toRadians(244), new TranslationalVelConstraint(100))//shooting pose
+            /*Actions.runBlocking(robot.drive.actionBuilder(robot.drive.getPose())
+                    .strafeToSplineHeading(new Vector2d(-55, -13), Math.toRadians(247), new TranslationalVelConstraint(100))//shooting pose
                     .build());
+
+             */
 
 
             break;

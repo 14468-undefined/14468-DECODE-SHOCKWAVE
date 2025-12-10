@@ -94,7 +94,7 @@ public class A_REDNEARGATEDUMP extends SampleAuto {
                 return false;
             });
 
-            AutoUtil.delay(2.9);
+            AutoUtil.delay(2.4);
             Actions.runBlocking((t) -> {
                 robot.intake.stop();
                 return false;
