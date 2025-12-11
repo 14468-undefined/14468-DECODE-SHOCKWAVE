@@ -76,7 +76,7 @@ public class A_BLUEGATEDUMP extends SampleAuto {
                 return false;
             });
 
-            AutoUtil.delay(2.9);
+            AutoUtil.delay(2.3);
             Actions.runBlocking((t) -> {
                 robot.intake.stop();
                 return false;
@@ -150,7 +150,7 @@ public class A_BLUEGATEDUMP extends SampleAuto {
                         //END NEW
 
 
-                        .strafeToSplineHeading(new Vector2d(-20, -8), Math.toRadians(229), new TranslationalVelConstraint(100))
+                        .strafeToSplineHeading(new Vector2d(-26, -17), Math.toRadians(226), new TranslationalVelConstraint(100))
                         .build());
 
 
@@ -212,7 +212,7 @@ public class A_BLUEGATEDUMP extends SampleAuto {
                     // ==============return============== \\
                     .strafeToConstantHeading(new Vector2d(21, -32))//back up
 
-                    .strafeToSplineHeading(new Vector2d(-35, -16), Math.toRadians(233))//go to shooting pose
+                    .strafeToSplineHeading(new Vector2d(-36, -13), Math.toRadians(233))//go to shooting pose
 
 
                     .build());
@@ -223,7 +223,6 @@ public class A_BLUEGATEDUMP extends SampleAuto {
             Actions.runBlocking((t) -> {robot.transfer.spin(); return false; });
             AutoUtil.delay(2);
             Actions.runBlocking((t) -> {robot.shooter.eStop(); return false; });
-            AutoUtil.delay(2);
             Actions.runBlocking((t) -> {robot.intake.stop(); return false; });
             Actions.runBlocking((t) -> {robot.shooter.eStop(); return false; });
 
@@ -233,7 +232,7 @@ public class A_BLUEGATEDUMP extends SampleAuto {
 
              */
 
-
+            //super.stop();
             break;
         }
     }

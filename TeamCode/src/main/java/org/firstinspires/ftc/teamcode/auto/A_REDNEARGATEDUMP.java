@@ -224,7 +224,7 @@ public class A_REDNEARGATEDUMP extends SampleAuto {
 
 
                     //.strafeToSplineHeading(new Vector2d(-43, 24), Math.toRadians(139))//shooting pose
-                    .strafeToLinearHeading(new Vector2d(-44, 24), Math.toRadians(136))//shooting pose
+                    .strafeToLinearHeading(new Vector2d(-44, 21), Math.toRadians(135))//shooting pose
 
 
 
@@ -265,6 +265,7 @@ public class A_REDNEARGATEDUMP extends SampleAuto {
                     .strafeToConstantHeading(new Vector2d(-50, 27))//shooting pose
                     .build()
             );
+            super.stop();
             break;
 
         }
