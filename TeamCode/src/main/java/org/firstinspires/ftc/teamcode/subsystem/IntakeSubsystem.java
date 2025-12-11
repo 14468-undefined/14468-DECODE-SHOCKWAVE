@@ -22,6 +22,7 @@ public class IntakeSubsystem extends UndefinedSubsystemBase {
 
         intakeMotor = new MotorEx(hardwareMap, "intake");
 
+
         //power instead of vel control
         intakeMotor.setRunMode(MotorEx.RunMode.RawPower);
         intakeMotor.setInverted(false);//run forwards

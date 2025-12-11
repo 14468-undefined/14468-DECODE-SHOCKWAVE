@@ -6,6 +6,7 @@ import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.RunCommand;
 import com.arcrobotics.ftclib.command.button.Trigger;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
+import com.arcrobotics.ftclib.gamepad.TriggerReader;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -49,9 +50,9 @@ public class PresentationTeleop extends SampleCommandTeleop {
         double shooterRealRPM = robot.shooter.getShooterVelocity();
 
 
-        robot.intake.setIntakePower(.4);//low
+        robot.intake.setIntakePower(1);//low
 
-        robot.LED.startOscillating();
+       // robot.LED.startOscillating();
     }
 
     @Override
@@ -74,6 +75,32 @@ public class PresentationTeleop extends SampleCommandTeleop {
             robot.shooter.eStop();
         });
 
+
+
+        TriggerReader leftTriggerReader = new TriggerReader(
+                g2, GamepadKeys.Trigger.LEFT_TRIGGER
+        );
+        if (leftTriggerReader.isDown()){
+            robot.transfer.spinReverse();
+        }
+        if(leftTriggerReader.wasJustReleased()){
+            robot.transfer.stop();
+        }
+
+        TriggerReader rightTriggerReader = new TriggerReader(
+                g2, GamepadKeys.Trigger.RIGHT_TRIGGER
+        );
+        if (rightTriggerReader.isDown()){
+            robot.intake.intake();
+        }
+        if(rightTriggerReader.wasJustReleased()){
+            robot.intake.stop();
+        }
+
+
+
+        new Trigger(() -> gamepad2.right_trigger > .1).whenActive(new InstantCommand(() -> robot.intake.intake())).whenInactive(new InstantCommand(() -> robot.intake.stop()));
+        new Trigger(() -> gamepad2.left_trigger > .1).whenActive(new InstantCommand(() -> robot.intake.intakeReverse())).whenInactive(new InstantCommand(() -> robot.intake.stop()));
 
 
         /*
@@ -129,50 +156,12 @@ public class PresentationTeleop extends SampleCommandTeleop {
             robot.transfer.stop();
         });
 
-        g2.getGamepadButton(GamepadKeys.Button.DPAD_LEFT).whenReleased(() -> {
-            //zone = 3;
-            //numShots = 3;
-
-            robot.transfer.stop();
-        });
-        g2.getGamepadButton(GamepadKeys.Button.DPAD_LEFT).whenPressed(() -> {
-            //zone = 3;
-            //numShots = 3;
-
-            robot.transfer.spinReverse();
-        });
 
 
 
 
 
 
-        g2.getGamepadButton(GamepadKeys.Button.A).whenPressed(() -> {
-            //zone = 2;
-            //numShots = 3;
-            shooterRPM = 2135;
-            robot.shooter.setTargetRPM(shooterRPM);
-
-        });
-        g2.getGamepadButton(GamepadKeys.Button.Y).whenPressed(() -> {
-            //zone = 3;
-            //numShots = 3;
-            shooterRPM = 2435;
-            robot.shooter.setTargetRPM(shooterRPM);
-        });
-
-        g2.getGamepadButton(GamepadKeys.Button.DPAD_UP).whenPressed(() -> {
-            //zone = 3;
-            //numShots = 3;
-            shooterRPM += 50;
-            robot.shooter.setTargetRPM(shooterRPM);
-        });
-        g2.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whenPressed(() -> {
-            //zone = 3;
-            //numShots = 3;
-            shooterRPM -= 50;
-            robot.shooter.setTargetRPM(shooterRPM);
-        });
 
 
 
@@ -206,6 +195,24 @@ public class PresentationTeleop extends SampleCommandTeleop {
         }
         else{
             pen.setColor(ColorfulTelemetry.Red);
+        }
+        if (robot.shooter.isAtTargetSpeed()) {
+            // Solid green when at speed
+            robot.LED.setColor(LEDSubsystem.LEDColor.GREEN);
+            robot.LED.stopOscillating();
+
+        } else if (robot.shooter.isActive() && robot.shooter.getShooterVelocity() > 100) {
+            // Spooling up → use oscillation instead of fixed .28
+            robot.LED.setColor(LEDSubsystem.LEDColor.RED);
+            robot.LED.stopOscillating();
+
+        } else if (robot.shooter.getShooterVelocity() < 300) {
+            // Idle → solid white
+            robot.LED.startOscillating();
+        }
+        else {
+            robot.LED.stopOscillating();
+            robot.LED.setPoseTest(1);
         }
     }
 
