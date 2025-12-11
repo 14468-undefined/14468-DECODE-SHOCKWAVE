@@ -57,6 +57,9 @@ repositories {
 
 
 dependencies {
+
+
+
     implementation project(':FtcRobotController')
 
     implementation("com.acmerobotics.slothboard:dashboard:0.2.4+0.4.17")//sloth added 11/9/25 this is the FTC dash update
@@ -81,5 +84,5 @@ dependencies {
     }
     //implementation "com.acmerobotics.dashboard:dashboard:0.5.0"//do i delete this (deleted when installing sloth)
 
-    implementation 'org.ftclib.ftclib:core:2.1.1'//new6
+    implementation 'org.ftclib.ftclib:core:2.1.1'//new6 //DELETED after NEXT FTC added 12/10/25
 }
