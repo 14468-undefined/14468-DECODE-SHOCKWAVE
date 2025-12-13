@@ -13,6 +13,17 @@ import org.firstinspires.ftc.teamcode.subsystem.BaseRobot;
 
 import org.firstinspires.ftc.teamcode.util.SampleAuto;
 
+
+/**
+ *
+ *
+ *
+ * @author JacobScherrer29
+ *
+ * this autonomous shoots 3 artifacts on the red side near to the goal. It is very consistent, and does NOT gate dump.
+ *
+ * modifiers: int, double, BaseRobot, addition, subtraction, multiplication, derivatives, etc.
+ */
 @Autonomous(name="A_RedNear9Artifacts")
 public class A_RedNear9Artifacts extends SampleAuto {
     private BaseRobot robot;
@@ -23,9 +34,7 @@ public class A_RedNear9Artifacts extends SampleAuto {
     TelemetryPacket packet = new TelemetryPacket();
 
 
-    //decrease heading
-    //higher intake time
-    //more to right
+
     @Override
     public void onInit(){
 
