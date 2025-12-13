@@ -280,7 +280,7 @@ public class LeaguesTeleop extends SampleCommandTeleop {
         pen.addData("Shooter RPM: ", robot.shooter.getShooterVelocity());
         pen.addData("Set RPM: ", robot.shooter.getTargetRPM());
 
-        /*
+
          // === LED OSCILLATION SETUP ===
     double time = getRuntime();       // seconds since start
         double min = 0.28;
@@ -310,12 +310,12 @@ public class LeaguesTeleop extends SampleCommandTeleop {
     }
 
 
-         */
+
 
         //far far - 2985
         //far close - 2685
         //close - 2135
-        if (robot.shooter.isAtTargetSpeed()) {
+       /* if (robot.shooter.isAtTargetSpeed()) {
             // Solid green when at speed
             robot.LED.setColor(LEDSubsystem.LEDColor.GREEN);
             robot.LED.stopOscillating();
@@ -333,6 +333,8 @@ public class LeaguesTeleop extends SampleCommandTeleop {
             robot.LED.stopOscillating();
             robot.LED.setPoseTest(1);
         }
+
+        */
 
 
         //pen.addLine("shooter RPM set:", shooterRPM);
