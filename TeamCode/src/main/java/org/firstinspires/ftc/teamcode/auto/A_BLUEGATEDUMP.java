@@ -12,12 +12,12 @@ import org.firstinspires.ftc.teamcode.subsystem.BaseRobot;
 
 import org.firstinspires.ftc.teamcode.util.SampleAuto;
 
-@Autonomous(name="A_BlueNearGATEDUMP")
+@Autonomous(name="A_BLUENEARGATEDUMP")
 public class A_BLUEGATEDUMP extends SampleAuto {
     private BaseRobot robot;
 
 
-    private int shooterRPMClose = 2200;//2135 //2100 //2090 //1990
+    private int shooterRPMClose = 2180; //2200 //2135 //2100 //2090 //1990
 
     TelemetryPacket packet = new TelemetryPacket();
 
@@ -150,7 +150,7 @@ public class A_BLUEGATEDUMP extends SampleAuto {
                         //END NEW
 
 
-                        .strafeToSplineHeading(new Vector2d(-26, -17), Math.toRadians(226), new TranslationalVelConstraint(100))
+                        .strafeToSplineHeading(new Vector2d(-26, -17), Math.toRadians(224), new TranslationalVelConstraint(100))
                         .build());
 
 
@@ -212,7 +212,7 @@ public class A_BLUEGATEDUMP extends SampleAuto {
                     // ==============return============== \\
                     .strafeToConstantHeading(new Vector2d(21, -32))//back up
 
-                    .strafeToSplineHeading(new Vector2d(-36, -13), Math.toRadians(233))//go to shooting pose
+                    .strafeToSplineHeading(new Vector2d(-36, -13), Math.toRadians(236))//go to shooting pose
 
 
                     .build());

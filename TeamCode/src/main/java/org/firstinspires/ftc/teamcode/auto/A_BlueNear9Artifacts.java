@@ -17,7 +17,7 @@ public class A_BlueNear9Artifacts extends SampleAuto {
     private BaseRobot robot;
 
 
-    private int shooterRPMClose = 2135;//2135 //2100 //2090 //1990
+    private int shooterRPMClose = 2180;//2135 //2100 //2090 //1990 //2200
 
     TelemetryPacket packet = new TelemetryPacket();
 
@@ -57,13 +57,13 @@ public class A_BlueNear9Artifacts extends SampleAuto {
             robot.LED.setPoseTest(.56);
 
 
-            robot.shooter.setTargetRPM(shooterRPMClose+85);
+            //robot.shooter.setTargetRPM(shooterRPMClose+85);
             Actions.runBlocking((t) -> {
                 robot.shooter.spin();
                 return false;
             });
             Actions.runBlocking(robot.drive.actionBuilder(robot.drive.getPose())
-                    .strafeToSplineHeading(new Vector2d(-30, -29), Math.toRadians(230))//go to shooting pose
+                    .strafeToSplineHeading(new Vector2d(-30, -27), Math.toRadians(232))//go to shooting pose
                     .build());
 
 
@@ -76,7 +76,7 @@ public class A_BlueNear9Artifacts extends SampleAuto {
                 return false;
             });
 
-            AutoUtil.delay(2.9);
+            AutoUtil.delay(2.3);
             Actions.runBlocking((t) -> {
                 robot.intake.stop();
                 return false;
@@ -100,106 +100,59 @@ public class A_BlueNear9Artifacts extends SampleAuto {
                 return false;
             });
 
-            if(!gateDump) {
-                Actions.runBlocking(robot.drive.actionBuilder(robot.drive.getPose())
-
-                        .afterTime(0, (t) -> {
-                            robot.intake.intake();
-                            robot.transfer.spinSlowReverse(.1);
-                            //robot.transfer.spinReverse();
-                            return false;
-                        })
-
-                        .afterTime(3.2, (t) -> {
-                            //robot.intake.stop();
-                            robot.intake.setIntakePower(.1);
-                            robot.intake.intake();
-                            //robot.transfer.stop();
-                            return false;
-                        })
-
-                        .afterTime(3.4, (t) -> {
-                            robot.transfer.spinReverse();
-                            //robot.transfer.stop();
-                            return false;
-                        })
-                        .afterTime(3.5, (t) -> {
-                            robot.transfer.stop();
-                            robot.intake.stop();
-                            robot.intake.setIntakePower(1);
-                            //robot.transfer.stop();
-                            return false;
-                        })
-
-                        .afterTime(3.7, (t) -> {
-                            robot.shooter.spin();
-                            //robot.transfer.stop();
-                            return false;
-                        })
-
-                        .strafeToSplineHeading(new Vector2d(-3, -20), Math.toRadians(270), new TranslationalVelConstraint(100))
-                        .strafeToConstantHeading(new Vector2d(-3, -57), new TranslationalVelConstraint(30))
 
 
-                        .strafeToConstantHeading(new Vector2d(-3, -55))
+            Actions.runBlocking(robot.drive.actionBuilder(robot.drive.getPose())
+
+                    .afterTime(0, (t) -> {
+                        robot.intake.intake();
+                        robot.transfer.spinSlowReverse(.1);
+                        //robot.transfer.spinReverse();
+                        return false;
+                    })
+
+                    .afterTime(3.2, (t) -> {
+                        //robot.intake.stop();
+                        robot.intake.setIntakePower(.1);
+                        robot.intake.intake();
+                        //robot.transfer.stop();
+                        return false;
+                    })
+
+                    .afterTime(3.4, (t) -> {
+                        robot.transfer.spinReverse();
+                        //robot.transfer.stop();
+                        return false;
+                    })
+                    .afterTime(3.5, (t) -> {
+                        robot.transfer.stop();
+                        robot.intake.stop();
+                        robot.intake.setIntakePower(1);
+                        //robot.transfer.stop();
+                        return false;
+                    })
+
+                    .afterTime(3.7, (t) -> {
+                        robot.shooter.spin();
+                        //robot.transfer.stop();
+                        return false;
+                    })
+
+                    .strafeToSplineHeading(new Vector2d(-3, -20), Math.toRadians(270), new TranslationalVelConstraint(100))
+                    .strafeToConstantHeading(new Vector2d(-3, -57), new TranslationalVelConstraint(25))
 
 
+                    .strafeToConstantHeading(new Vector2d(-3, -55))
 
-                        .strafeToSplineHeading(new Vector2d(-30, -15), Math.toRadians(223), new TranslationalVelConstraint(100))
-                        .build());
-            }
-            else {
-                Actions.runBlocking(robot.drive.actionBuilder(robot.drive.getPose())
-
-                        .afterTime(0, (t) -> {
-                            robot.intake.intake();
-                            robot.transfer.spinSlowReverse(.1);
-                            //robot.transfer.spinReverse();
-                            return false;
-                        })
-
-                        .afterTime(3.2, (t) -> {
-                            //robot.intake.stop();
-                            robot.intake.setIntakePower(.1);
-                            robot.intake.intake();
-                            //robot.transfer.stop();
-                            return false;
-                        })
-
-                        .afterTime(3.4, (t) -> {
-                            robot.transfer.spinReverse();
-                            //robot.transfer.stop();
-                            return false;
-                        })
-                        .afterTime(3.5, (t) -> {
-                            robot.transfer.stop();
-                            robot.intake.stop();
-                            robot.intake.setIntakePower(1);
-                            //robot.transfer.stop();
-                            return false;
-                        })
-
-                        .afterTime(3.7, (t) -> {
-                            robot.shooter.spin();
-                            //robot.transfer.stop();
-                            return false;
-                        })
-
-                        .strafeToSplineHeading(new Vector2d(-3, -20), Math.toRadians(270), new TranslationalVelConstraint(100))
-                        .strafeToConstantHeading(new Vector2d(-3, -57), new TranslationalVelConstraint(30))
+                    //NEW
+                    //.strafeToConstantHeading(new Vector2d(7, -40), new TranslationalVelConstraint(30))
+                    //.strafeToConstantHeading(new Vector2d(7, -55), new TranslationalVelConstraint(30))
+                    //END NEW
 
 
-                        .strafeToConstantHeading(new Vector2d(-3, -55))
+                    .strafeToSplineHeading(new Vector2d(-26, -17), Math.toRadians(224), new TranslationalVelConstraint(100))
+                    .build());
 
-                        //NEW
-                        .strafeToConstantHeading(new Vector2d(-12, -50), new TranslationalVelConstraint(30))
-                        .strafeToConstantHeading(new Vector2d(-12, -55), new TranslationalVelConstraint(30))
-                        //END NEW
-
-
-                        .strafeToSplineHeading(new Vector2d(-30, -15), Math.toRadians(223), new TranslationalVelConstraint(100))
-                        .build());
-            }
 
 
             Actions.runBlocking((t) -> {robot.shooter.spin(); return false; });
@@ -253,32 +206,33 @@ public class A_BlueNear9Artifacts extends SampleAuto {
 
 
                     //MOTIF 2
-                    .strafeToSplineHeading(new Vector2d(21, -9), Math.toRadians(270), new TranslationalVelConstraint(100))//go to motif
-                    .strafeToConstantHeading(new Vector2d(21, -65))//intake
+                    .strafeToSplineHeading(new Vector2d(22, -9), Math.toRadians(270), new TranslationalVelConstraint(100))//go to motif
+                    .strafeToConstantHeading(new Vector2d(25, -65))//intake
 
                     // ==============return============== \\
-                    .strafeToConstantHeading(new Vector2d(21, -32))//back up
+                    .strafeToConstantHeading(new Vector2d(26, -32))//back up
 
-                    .strafeToSplineHeading(new Vector2d(-32, -26), Math.toRadians(217))//go to shooting pose
+                    .strafeToSplineHeading(new Vector2d(-36, -13), Math.toRadians(236))//go to shooting pose
 
 
                     .build());
 
-            Actions.runBlocking((t) -> {robot.shooter.spin(); return false; });
+            Actions.runBlocking((t) -> { robot.shooter.setTargetRPM(shooterRPMClose);robot.shooter.spin(); return false; });
             //AutoUtil.delay(2);
             Actions.runBlocking((t) -> {robot.intake.intake(); return false; });
             Actions.runBlocking((t) -> {robot.transfer.spin(); return false; });
             AutoUtil.delay(2);
             Actions.runBlocking((t) -> {robot.shooter.eStop(); return false; });
-            AutoUtil.delay(2);
             Actions.runBlocking((t) -> {robot.intake.stop(); return false; });
             Actions.runBlocking((t) -> {robot.shooter.eStop(); return false; });
 
-            Actions.runBlocking(robot.drive.actionBuilder(robot.drive.getPose())
-                    .strafeToSplineHeading(new Vector2d(-50, -13), Math.toRadians(244), new TranslationalVelConstraint(100))//shooting pose
-                            .build());
+            /*Actions.runBlocking(robot.drive.actionBuilder(robot.drive.getPose())
+                    .strafeToSplineHeading(new Vector2d(-55, -13), Math.toRadians(247), new TranslationalVelConstraint(100))//shooting pose
+                    .build());
 
+             */
 
+            //super.stop();
             break;
         }
     }

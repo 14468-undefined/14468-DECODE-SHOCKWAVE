@@ -22,6 +22,10 @@ public class A_REDNEARGATEDUMP extends SampleAuto {
 
     TelemetryPacket packet = new TelemetryPacket();
 
+
+    //decrease heading
+    //higher intake time
+    //more to right
     @Override
     public void onInit(){
 
@@ -81,7 +85,7 @@ public class A_REDNEARGATEDUMP extends SampleAuto {
                 return false;
             });
             Actions.runBlocking(robot.drive.actionBuilder(robot.drive.getPose())
-                    .strafeToSplineHeading(new Vector2d(-30, 28), Math.toRadians(131))//go to shooting pose
+                    .strafeToSplineHeading(new Vector2d(-30, 28), Math.toRadians(128))//go to shooting pose
                     .build());
 
 
@@ -118,24 +122,24 @@ public class A_REDNEARGATEDUMP extends SampleAuto {
                         return false;
                     })
 
-                    .afterTime(2.4, t -> {//was 3.7
+                    .afterTime(2.9, t -> {//was 3.7
 
                         robot.intake.stop();
                         return false;
                     })
 
-                    .afterTime(2.5, (t) -> {
+                    .afterTime(3, (t) -> {
                         robot.transfer.spinReverse();
                         //robot.transfer.stop();
                         return false;
                     })
-                    .afterTime(2.7, (t) -> {
+                    .afterTime(3.1, (t) -> {
                         robot.transfer.stop();
                         //robot.transfer.stop();
                         return false;
                     })
 
-                    .afterTime(3.4, (t) -> {
+                    .afterTime(4.2, (t) -> {
                         robot.shooter.setTargetRPM(shooterRPMClose+25);
                         robot.shooter.spin();
                         return false;
@@ -150,7 +154,7 @@ public class A_REDNEARGATEDUMP extends SampleAuto {
 
 
                     //.strafeToConstantHeading(new Vector2d(-24, 57))
-                    .strafeToSplineHeading(new Vector2d(-32, 26), Math.toRadians(145))
+                    .strafeToSplineHeading(new Vector2d(-32, 26), Math.toRadians(144))
                     .build());
 
             Actions.runBlocking((t) -> {
@@ -216,15 +220,15 @@ public class A_REDNEARGATEDUMP extends SampleAuto {
 
 
                     //MOTIF 2
-                    .strafeToSplineHeading(new Vector2d(4.5, 22), Math.toRadians(90))//go to motif
-                    .strafeToConstantHeading(new Vector2d(5, 69),  new TranslationalVelConstraint(20))//intake
+                    .strafeToSplineHeading(new Vector2d(3 , 22), Math.toRadians(90))//go to motif
+                    .strafeToConstantHeading(new Vector2d(4, 69),  new TranslationalVelConstraint(20))//intake
 
                     // ==============return============== \\
-                    .strafeToConstantHeading(new Vector2d(6, 50))//back up
+                    .strafeToConstantHeading(new Vector2d(4, 50))//back up
 
 
                     //.strafeToSplineHeading(new Vector2d(-43, 24), Math.toRadians(139))//shooting pose
-                    .strafeToLinearHeading(new Vector2d(-44, 21), Math.toRadians(135))//shooting pose
+                    .strafeToLinearHeading(new Vector2d(-42, 19), Math.toRadians(133))//shooting pose
 
 
 

@@ -22,9 +22,13 @@ public class A_RedNear9Artifacts extends SampleAuto {
 
     TelemetryPacket packet = new TelemetryPacket();
 
+
+    //decrease heading
+    //higher intake time
+    //more to right
     @Override
     public void onInit(){
-        
+
         robot = new BaseRobot(hardwareMap, new Pose2d(-61, 40, Math.toRadians(180)));
 
         robot.shooter.setTargetRPM(shooterRPMClose);
@@ -76,191 +80,197 @@ public class A_RedNear9Artifacts extends SampleAuto {
 
 
 
-                Actions.runBlocking((t) -> {
-                    robot.shooter.spin();
-                    return false;
-                });
-                Actions.runBlocking(robot.drive.actionBuilder(robot.drive.getPose())
-                        .strafeToSplineHeading(new Vector2d(-30, 28), Math.toRadians(131))//go to shooting pose
-                        .build());
+            Actions.runBlocking((t) -> {
+                robot.shooter.spin();
+                return false;
+            });
+            Actions.runBlocking(robot.drive.actionBuilder(robot.drive.getPose())
+                    .strafeToSplineHeading(new Vector2d(-30, 28), Math.toRadians(128))//go to shooting pose
+                    .build());
 
 
-                Actions.runBlocking((t) -> {
-                    robot.intake.intake();
-                    return false;
-                });
-                Actions.runBlocking((t) -> {
-                    robot.transfer.spin();
-                    return false;
-                });
+            Actions.runBlocking((t) -> {
+                robot.intake.intake();
+                return false;
+            });
+            Actions.runBlocking((t) -> {
+                robot.transfer.spin();
+                return false;
+            });
 
-                AutoUtil.delay(2.9);
-                Actions.runBlocking((t) -> {
-                    robot.intake.stop();
-                    return false;
-                });
-                Actions.runBlocking((t) -> {
-                    robot.intake.setIntakePower(1);
-                    return false;
-                });
-                Actions.runBlocking((t) -> {
-                    robot.shooter.eStop();
-                    return false;
-                });
-
-                // ====================== Intake 1st Pile ====================== \\
-
+            AutoUtil.delay(2.4);
+            Actions.runBlocking((t) -> {
+                robot.intake.stop();
+                return false;
+            });
+            Actions.runBlocking((t) -> {
                 robot.intake.setIntakePower(1);
-                Actions.runBlocking(robot.drive.actionBuilder(robot.drive.getPose())
+                return false;
+            });
+            Actions.runBlocking((t) -> {
+                robot.shooter.eStop();
+                return false;
+            });
 
-                        .afterTime(0, t -> {
-                            robot.intake.intake();
-                            return false;
-                        })
+            // ====================== Intake 1st Pile ====================== \\
 
-                        .afterTime(3, t -> {//was 3.7
+            robot.intake.setIntakePower(1);
+            Actions.runBlocking(robot.drive.actionBuilder(robot.drive.getPose())
 
-                            robot.intake.stop();
-                            return false;
-                        })
+                    .afterTime(0, t -> {
+                        robot.intake.intake();
+                        return false;
+                    })
 
-                        .afterTime(3.1, (t) -> {
-                            robot.transfer.spinReverse();
-                            //robot.transfer.stop();
-                            return false;
-                        })
-                        .afterTime(3.3, (t) -> {
-                            robot.transfer.stop();
-                            //robot.transfer.stop();
-                            return false;
-                        })
+                    .afterTime(2.9, t -> {//was 3.7
 
-                        .afterTime(3.4, (t) -> {
-                            robot.shooter.setTargetRPM(shooterRPMClose+25);
-                            robot.shooter.spin();
-                            return false;
-                        })
+                        robot.intake.stop();
+                        return false;
+                    })
 
+                    .afterTime(3, (t) -> {
+                        robot.transfer.spinReverse();
+                        //robot.transfer.stop();
+                        return false;
+                    })
+                    .afterTime(3.1, (t) -> {
+                        robot.transfer.stop();
+                        //robot.transfer.stop();
+                        return false;
+                    })
 
-                        .strafeToSplineHeading(new Vector2d(-20, 25.4), Math.toRadians(90))
-                        .strafeToConstantHeading(new Vector2d(-19, 64.8), new TranslationalVelConstraint(25))
-
-
-                        .strafeToConstantHeading(new Vector2d(-24, 57))
-                        .strafeToSplineHeading(new Vector2d(-32, 26), Math.toRadians(145))
-                        .build());
-
-                Actions.runBlocking((t) -> {
-                    robot.shooter.spin();
-                    return false;
-                });
-                //AutoUtil.delay(2);
-                Actions.runBlocking((t) -> {
-                    robot.intake.setIntakePower(1);
-                    return false;
-                });
-                Actions.runBlocking((t) -> {
-                    robot.intake.intake();
-                    return false;
-                });
-                Actions.runBlocking((t) -> {
-                    robot.transfer.spin();
-                    return false;
-                });
-                AutoUtil.delay(3);
-                Actions.runBlocking((t) -> {
-                    robot.stopAll();
-                    return false;
-                });
-                //wait til shoot 3 is done to move
-
-                Actions.runBlocking((t) -> {
-                   robot.shooter.setTargetRPM(shooterRPMClose);
-                   return false;
-                });
-
-                Actions.runBlocking(robot.drive.actionBuilder(robot.drive.getPose())
-
-                        .afterTime(1.6, t -> {
-
-                            robot.intake.intake();
-                            return false; // becomes false after first trigger
-                        })
-
-                        .afterTime(4, t -> {
-
-                            robot.intake.stop();
-                            return false;
-                        })
+                    .afterTime(4.2, (t) -> {
+                        robot.shooter.setTargetRPM(shooterRPMClose+25);
+                        robot.shooter.spin();
+                        return false;
+                    })
 
 
-                        .afterTime(4.1, (t) -> {
-                            robot.transfer.spinReverse();
-                            //robot.transfer.stop();
-                            return false;
-                        })
-                        .afterTime(4.2, (t) -> {
-                            robot.transfer.stop();
-                            //robot.transfer.stop();
-                            return false;
-                        })
+                    .strafeToSplineHeading(new Vector2d(-20, 25.4), Math.toRadians(90))
+                    .strafeToConstantHeading(new Vector2d(-19, 64.8), new TranslationalVelConstraint(25))
 
-                        .afterTime(4.4, (t) -> {
-                            robot.shooter.spin();
-                            //robot.transfer.stop();
-                            return false;
-                        })
+                    //.strafeToConstantHeading(new Vector2d(-7.3, 48))
+                    //.strafeToConstantHeading(new Vector2d(-7.3, 64.5), new TranslationalVelConstraint(25))
 
 
-                        //MOTIF 2
-                        .strafeToSplineHeading(new Vector2d(4.5, 22), Math.toRadians(90))//go to motif
-                        .strafeToConstantHeading(new Vector2d(5, 69))//intake
+                    //.strafeToConstantHeading(new Vector2d(-24, 57))
+                    .strafeToSplineHeading(new Vector2d(-32, 26), Math.toRadians(144))
+                    .build());
 
-                        // ==============return============== \\
-                        .strafeToConstantHeading(new Vector2d(6, 50))//back up
+            Actions.runBlocking((t) -> {
+                robot.shooter.spin();
+                return false;
+            });
+            //AutoUtil.delay(2);
+            Actions.runBlocking((t) -> {
+                robot.intake.setIntakePower(1);
+                return false;
+            });
+            Actions.runBlocking((t) -> {
+                robot.intake.intake();
+                return false;
+            });
+            Actions.runBlocking((t) -> {
+                robot.transfer.spin();
+                return false;
+            });
+            AutoUtil.delay(3);
+            Actions.runBlocking((t) -> {
+                robot.stopAll();
+                return false;
+            });
+            //wait til shoot 3 is done to move
+
+            Actions.runBlocking((t) -> {
+                robot.shooter.setTargetRPM(shooterRPMClose);
+                return false;
+            });
+
+            Actions.runBlocking(robot.drive.actionBuilder(robot.drive.getPose())
+
+                    .afterTime(1.6, t -> {
+
+                        robot.intake.intake();
+                        return false; // becomes false after first trigger
+                    })
+
+                    .afterTime(4, t -> {
+
+                        robot.intake.stop();
+                        return false;
+                    })
 
 
-                        //.strafeToSplineHeading(new Vector2d(-43, 24), Math.toRadians(139))//shooting pose
-                        .strafeToLinearHeading(new Vector2d(-41, 24), Math.toRadians(138.5))//shooting pose
+                    .afterTime(4.1, (t) -> {
+                        robot.transfer.spinReverse();
+                        //robot.transfer.stop();
+                        return false;
+                    })
+                    .afterTime(4.2, (t) -> {
+                        robot.transfer.stop();
+                        //robot.transfer.stop();
+                        return false;
+                    })
+
+                    .afterTime(4.4, (t) -> {
+                        robot.shooter.spin();
+                        //robot.transfer.stop();
+                        return false;
+                    })
+
+
+                    //MOTIF 2
+                    .strafeToSplineHeading(new Vector2d(3 , 22), Math.toRadians(90))//go to motif
+                    .strafeToConstantHeading(new Vector2d(4, 69),  new TranslationalVelConstraint(20))//intake
+
+                    // ==============return============== \\
+                    .strafeToConstantHeading(new Vector2d(4, 50))//back up
+
+
+                    //.strafeToSplineHeading(new Vector2d(-43, 24), Math.toRadians(139))//shooting pose
+                    .strafeToLinearHeading(new Vector2d(-42, 19), Math.toRadians(133))//shooting pose
 
 
 
-                        .build());
+                    .build());
 
 
-                Actions.runBlocking((t) -> {
-                    robot.shooter.spin();
-                    return false;
-                });
-                //AutoUtil.delay(2);
-                Actions.runBlocking((t) -> {
-                    robot.intake.intake();
-                    return false;
-                });
-                Actions.runBlocking((t) -> {
-                    robot.transfer.spin();
-                    return false;
-                });
-                AutoUtil.delay(2);
-                Actions.runBlocking((t) -> {
-                    robot.shooter.eStop();
-                    return false;
-                });
-                AutoUtil.delay(2);
-                Actions.runBlocking((t) -> {
-                    robot.intake.stop();
-                    return false;
-                });
-                Actions.runBlocking((t) -> {
-                    robot.shooter.eStop();
-                    return false;
-                });
+            Actions.runBlocking((t) -> {
+                robot.shooter.setTargetRPM(shooterRPMClose-10);
+                robot.shooter.spin();
 
-                Actions.runBlocking(robot.drive.actionBuilder(robot.drive.getPose())
-                        .strafeToConstantHeading(new Vector2d(-50, 27))//shooting pose
-                        .build()
-                );
-                break;
+                return false;
+            });
+            //AutoUtil.delay(2);
+            Actions.runBlocking((t) -> {
+                robot.intake.intake();
+                return false;
+            });
+            Actions.runBlocking((t) -> {
+                robot.transfer.spin();
+                return false;
+            });
+            AutoUtil.delay(2);
+            Actions.runBlocking((t) -> {
+                robot.shooter.eStop();
+                return false;
+            });
+            AutoUtil.delay(3);
+            Actions.runBlocking((t) -> {
+                robot.intake.stop();
+                return false;
+            });
+            Actions.runBlocking((t) -> {
+                robot.shooter.eStop();
+                return false;
+            });
+
+            Actions.runBlocking(robot.drive.actionBuilder(robot.drive.getPose())
+                    .strafeToConstantHeading(new Vector2d(-50, 27))//shooting pose
+                    .build()
+            );
+            super.stop();
+            break;
 
         }
     }

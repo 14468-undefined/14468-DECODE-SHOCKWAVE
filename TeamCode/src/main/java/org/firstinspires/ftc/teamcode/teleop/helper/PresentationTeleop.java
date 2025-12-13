@@ -189,14 +189,26 @@ public class PresentationTeleop extends SampleCommandTeleop {
 
 
         double timePassed = scriptTimer.seconds();
-        pen.addData("Time: ", timePassed);
-        if(timePassed < 240) {//4 min
+
+// Convert to minutes and seconds
+        int minutes = (int) (timePassed / 60);
+        int seconds = (int) (timePassed % 60);
+
+// Format as MM:SS
+        String timeString = String.format("%02d:%02d", minutes, seconds);
+
+// Add to telemetry
+        pen.addData("Time: ", timeString);
+
+// Change color based on 4 minutes
+        if(timePassed < 290) { // 4 min
             pen.setColor(ColorfulTelemetry.Green);
-        }
-        else{
+        } else {
             pen.setColor(ColorfulTelemetry.Red);
         }
-        if (robot.shooter.isAtTargetSpeed()) {
+
+
+        /*if (robot.shooter.isAtTargetSpeed()) {
             // Solid green when at speed
             robot.LED.setColor(LEDSubsystem.LEDColor.GREEN);
             robot.LED.stopOscillating();
@@ -214,6 +226,8 @@ public class PresentationTeleop extends SampleCommandTeleop {
             robot.LED.stopOscillating();
             robot.LED.setPoseTest(1);
         }
+
+         */
     }
 
 

@@ -22,22 +22,20 @@ public class PrepDriveVisionShootCommand extends SequentialCommandGroup {
         //drive to tag with PID
         CommandBase driveToTagWhenSeen = new CommandBase() {
             {
-                addRequirements(robot.drive, robot.webcamVision);
+                //addRequirements(robot.drive, robot.webcamVision);
             }
 
             @Override
             public void execute() {
-                if (robot.webcamVision.hasTarget()) {
+                /*if (robot.webcamVision.hasTarget()) {
                     robot.webcamVision.getDriveToTagCommand(drive).execute();
                 }
+
+                 */
                 // else: do nothing, manual driving can continue
             }
 
-            @Override
-            public boolean isFinished() {
-                // Finish once we have a tag and it’s close enough
-                return robot.webcamVision.isAtTarget();
-            }
+
 
             @Override
             public void end(boolean interrupted) {
@@ -56,7 +54,7 @@ public class PrepDriveVisionShootCommand extends SequentialCommandGroup {
 
         // --- Sequence everything ---
 
-        addRequirements(robot.webcamVision, robot.drive, robot.shooter);
+        //addRequirements(robot.webcamVision, robot.drive, robot.shooter);
         addCommands(
                 //startVision,
                 driveAndSpin
